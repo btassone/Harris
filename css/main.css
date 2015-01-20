@@ -1,0 +1,37 @@
+/** Globals **/
+* { -webkit-font-smoothing: antialiased; }
+body { margin: 0; padding: 0; font-family: 'Roboto', sans-serif; font-size: 16px; position: relative; }
+a { -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; transition: all 0.3s ease; }
+input[type="submit"] { -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; transition: all 0.3s ease; cursor: pointer; }
+
+h1 { font-size: 2.25em; text-transform: uppercase; }
+h2 { font-size: 1.5em; text-transform: uppercase; }
+
+.wrap { max-width: 1200px; margin: auto; }
+.wrap img { max-width:100%; height:auto; }
+.box_sizing { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+.transform_ny50 { -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); transform: translateY(-50%); }
+.transition_03s_all_ease { -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; transition: all 0.3s ease; }
+
+/** Column System **/
+.onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol, .sevencol, .eightcol, .ninecol, .tencol, .elevencol, .twelvecol { margin-left:3%; float:left; position:relative; }
+.onecol:first-child, .twocol:first-child, .threecol:first-child, .fourcol:first-child, .fivecol:first-child, .sixcol:first-child, .sevencol:first-child, .eightcol:first-child, .ninecol:first-child, .tencol:first-child, .elevencol:first-child, .twelvecol:first-child { margin-left:0; }
+.onecol { width: 5.583%; }
+.twocol { width: 14.16%; }
+.threecol { width: 22.75%; }
+.fourcol { width: 31.33%; }
+.fivecol { width: 39.91%; }
+.sixcol { width: 48.5%; }
+.sevencol { width: 57.08%; }
+.eightcol { width: 65.66%; }
+.ninecol { width: 74.25%; }
+.tencol { width: 82.83%; }
+.elevencol { width: 91.41%; }
+.twelvecol { width: 100%; }
+.onehalf { width:50%; float:left; }
+.onethird { width:33%; float:left; }
+.first { margin-left: 0; }
+
+@media(max-width: 800px){
+    .onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol, .sevencol, .eightcol, .ninecol, .tencol, .elevencol, .twelvecol, .onehalf, .onethird { width:100%; margin:0; }
+}

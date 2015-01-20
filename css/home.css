@@ -1,0 +1,55 @@
+h1 { color: #e31936; }
+.main_section_headings { margin-bottom: 20px; }
+.main_section_headings h1 { margin-bottom: 0; }
+.main_section_headings .description { color: #222222; font-size: 0.875em; }
+
+.header { background-color: #E31936; position: relative; }
+.header .wrap { padding: 0; background-color: #E31936; position: relative; overflow: hidden; }
+.header .bg { position: absolute; width: 50%; top: 0; left: 0; height: 100%; background-color: #FFFFFF; }
+.header .logo { padding: 1em 0; background-color: #FFFFFF; }
+.header .logo img { margin-bottom: -20px; }
+.header .navigation { position: absolute; padding: 1em 0; height: 100%; right: 0; box-sizing: border-box; }
+.header .nav { margin: 0; padding: 0; list-style-type: none; position: absolute; right: 0; top: 50%; transform: translateY(-50%); display: block; }
+.header .nav li { float: left; margin-right: 10px; }
+.header .nav li:last-child { margin-right: 0; }
+.header .nav li a { color: #FFFFFF; font-size: 1em; text-decoration: none; display: block; position: relative; }
+.header .nav li a:before { content: ''; position: absolute; bottom: 100%; height: 2px; background-color: #FFFFFF; width: 100%; left: 0; opacity: 0; }
+.header .nav li a:after { content: ''; position: absolute; top: 100%; height: 2px; background-color: #FFFFFF; width: 100%; left: 0; opacity: 0; }
+.header .nav li a:before,
+.header .nav li a:after { -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; transition: all 0.3s ease; }
+.header .nav li a:hover:before { opacity: 1; bottom: 110%; }
+.header .nav li a:hover:after { opacity: 1; top: 110%; }
+
+.quick_watch { background-color: #000000; position: relative; text-align: center; }
+.quick_watch .content_closed { color: #FFFFFF; text-decoration: none; display: none; background-color: rgba(0,0,0, 0.75); padding: 1em; width: 200px; text-align: center; margin: auto; }
+.quick_watch .bg { background: url('../images/firetruck.jpg') no-repeat 50% 50%; background-size: cover; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+.quick_watch .wrap { padding: 3em 0; position: relative; z-index: 10; }
+.quick_watch .wrap h2 { color: #FFFFFF; margin: 0; }
+.quick_watch .description { font-size: 0.875em; color: #FFFFFF; }
+.quick_watch .content { background-color: rgba(0,0,0,0.75); padding: 2em; text-align: left; }
+.quick_watch .cars { overflow: hidden; color: #FFFFFF; }
+.quick_watch .car .icon { width: 22%;}
+.quick_watch .car .icon,
+.quick_watch .car .status { font-weight: 600; font-size: 0.875em; display: table-cell; vertical-align: middle; }
+.quick_watch .close { position: absolute; z-index: 10; right: 1em; width: 24px; height: 24px; cursor: pointer; }
+
+.selected_vehicle .wrap { padding: 3em 0; }
+.selected_vehicle .selected_stats h2 { margin-top: 0; }
+.selected_vehicle .selected_stats { background-color: #e31936; color: #FFFFFF; padding: 2em; }
+.selected_vehicle .selected_stats .table { display: table; border-collapse: collapse; }
+.selected_vehicle .selected_stats .trow { display: table-row; }
+.selected_vehicle .selected_stats .column { display: table-cell; padding-left: 20px; }
+.selected_vehicle .selected_stats .column:first-child { padding-left: 0; }
+.selected_vehicle .selected_stats .throw .column { padding-right: 20px; padding-bottom: 5px; border-right: 2px solid #FFFFFF; }
+.selected_vehicle .selected_stats .throw .column:first-child { padding-left: 0; }
+.selected_vehicle .selected_stats .throw .column:last-child { padding-right: 0; border-right: none; }
+.selected_vehicle .selected_stats .section { margin-bottom: 20px; border-bottom: 1px dashed #FFFFFF; padding-bottom: 20px; }
+.selected_vehicle .selected_stats .section:last-child { margin-bottom: 0; border-bottom: 0; padding-bottom: 0; }
+
+.recent_errors .table { display: table; width: 100%;}
+.recent_errors .trow { display: table-row; }
+.recent_errors .throw .column { color: #E31936; font-weight: 600; border-bottom: 1px solid #E51837; padding-bottom: 5px; margin-bottom: 10px; }
+.recent_errors .column { display: table-cell; font-size: 0.875em; color: #222222; padding: 10px 0; padding-left: 5px; }
+.recent_errors .error .column { background-color: #E51837; color: #FFFFFF; }
+
+.copyright { margin-top: 60px; background-color: #E51837; padding: 1.5em 0; color: #FFFFFF; text-align: center; }
