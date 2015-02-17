@@ -1,6 +1,7 @@
 # Harris project
 
 ## Installation Instructions
+
 npm install (may require sudo)
 bower install
 npm start (may require sudo)
