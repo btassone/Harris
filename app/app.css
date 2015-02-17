@@ -1,0 +1,174 @@
+body { -webkit-font-smoothing: antialiased; padding: 0; margin: 0; font-size: 16px; font-family: 'Roboto', sans-serif; }
+ul, ol { list-style-type: none; margin: 0; padding: 0; }
+a { text-decoration: none; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; transition: all 0.3s ease; outline: 0; }
+
+:hover, :focus, :active { outline: none !important; }
+
+.mobile_show { display: none !important; }
+.mobile_hide { display: block !important; }
+
+.fixed_bg { background-attachment:fixed !important; }
+
+.transition_1sec { -webkit-transition:all .1s ease; -moz-transition:all .1s ease; transition:all .1s ease; }
+.transition_3sec { -webkit-transition:all .3s ease; -moz-transition:all .3s ease; transition:all .3s ease; }
+.transition_5sec { -webkit-transition:all .5s ease; -moz-transition:all .5s ease; transition:all .5s ease; }
+.transition_8sec { -webkit-transition:all .8s ease; -moz-transition:all .8s ease; transition:all .8s ease; }
+
+.box_sizing { -webkit-box-sizing: border-box; -ms-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+.transform_nx_50 { -webkit-transform: translateX(-50%); -moz-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); }
+.transform_ny_50 { -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); }
+.transform_nxy_50 { -webkit-transform: translate(-50%,-50%); -moz-transform: translate(-50%,-50%); -ms-transform: translate(-50%,-50%); transform: translate(-50%,-50%); }
+
+.rotate_0 { -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); transform: rotate(0deg); }
+.rotate_p_45 { -webkit-transform:rotate(45deg); -ms-transform:rotate(45deg); transform:rotate(45deg); }
+.rotate_n_45 { -webkit-transform:rotate(-45deg); -ms-transform:rotate(-45deg); transform:rotate(-45deg); }
+
+.backface_hidden { -webkit-backface-visibility: hidden; -moz-backface-visibility: hidden; backface-visibility: hidden; }
+
+.mobile_hide { display: block; }
+.mobile_show { display: none; }
+
+.uppercase { text-transform: uppercase; }
+
+.ultrathin { font-weight: 100; }
+.thin { font-weight: 300; }
+.normal { font-weight: 400; }
+.bold { font-weight: 500; }
+.semibold { font-weight: 700; }
+.ultrabold { font-weight: 900; }
+
+/** Flexslider Override **/
+.flexslider { margin: 0; background: none; border: none; box-shadow: none; border-radius: 0; }
+
+.content p:last-child { margin-bottom: 0 !important; }
+
+body .no_padding { padding: 0; }
+
+h1,h2,h3,h4,h5,h6 { margin-top: 0; margin-bottom: 20px; }
+h1, .h1_size { font-size: 2.5em; }
+h4, .h4_size { font-size: 1.5em; }
+
+/********************* BLOCKS **********************/
+.block { width:100%; clear:both; position:relative; z-index:200; }
+.wrap { width:90%; max-width:1160px; margin:0 auto; padding: 3.6em 0; position:relative; z-index:200; }
+.wrap_thin { max-width: 1040px; }
+.wrap:before, .wrap:after, form:before, form:after { display:table; content:" "; zoom:1; }
+.wrap:after, form:after { clear:both; }
+.wrap img { max-width:100%; height:auto; }
+.onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol, .sevencol, .eightcol, .ninecol, .tencol, .elevencol, .twelvecol { margin-left:3%; float:left; position:relative; }
+.onecol:first-child, .twocol:first-child, .threecol:first-child, .fourcol:first-child, .fivecol:first-child, .sixcol:first-child, .sevencol:first-child, .eightcol:first-child, .ninecol:first-child, .tencol:first-child, .elevencol:first-child, .twelvecol:first-child { margin-left:0; }
+.onecol { width: 5.583%; }
+.twocol { width: 14.16%; }
+.threecol { width: 22.75%; }
+.fourcol { width: 31.33%; }
+.fivecol { width: 39.91%; }
+.sixcol { width: 48.5%; }
+.sevencol { width: 57.08%; }
+.eightcol { width: 65.66%; }
+.ninecol { width: 74.25%; }
+.tencol { width: 82.83%; }
+.elevencol { width: 91.41%; }
+.twelvecol { width: 100%; }
+.onehalf { width:50%; float:left; }
+.onethird { width:33%; float:left; }
+.first { margin-left: 0; }
+.row { overflow:hidden; display:block; clear:both; }
+
+header { position: relative; }
+header .bg { background-color: #fff; position: absolute; width: 100%; height: 100%; }
+header .bg .red { background-color: #e41936; position: absolute; right: 0; width: 50%; height: 100%; }
+header .top { position: relative; }
+header .top .wrap { padding: 0; }
+header .top .logo { padding: 1.5em 1.5em 1.5em 0; position: relative; z-index: 300; background-color: #fff; float: left; }
+header .top .navigation { background-color: #e41936; color: #fff; width: 70%; right: 0; position: absolute; height: 100%; top: 0; }
+header .top .logo img { width: 170px; margin-bottom: -20px; }
+header .navigation .container { position: absolute; right: 0; top: 50%; height: 100%; }
+header .navigation .container .item { float: left; height: 100%; position: relative; }
+header .navigation .container .item:hover { background-color: #9e1328; }
+header .navigation .container .item.active { background-color: #9e1328; }
+header .navigation .container .item a { color: #fff; position: relative; top: 50%; display: block; padding-left: 12px; padding-right: 12px; }
+
+header .rtm { background-color: #eee; }
+header .rtm .wrap { padding: 2.2em 0; max-width: 1080px; }
+header .rtm .title { color: #ad172d; margin: 0; line-height: 1em; }
+
+main { position: relative; background-color: #dddddd; }
+main .vehicle_list .wrap { color: #fff; }
+main .vehicle_list .info { margin-right: 10px; }
+main .vehicle_list .row { margin-bottom: 10px; }
+main .vehicle_list .row:last-child { margin-bottom: 0; }
+main .vehicle_list .car { background-color: #616161; overflow: hidden; padding: 10px; position: relative; display: block; cursor: pointer; }
+main .vehicle_list .car.clicked { background-color: #393939; }
+main .vehicle_list .car .status_color { width: 20px; height: 100%; position: absolute; right: 0; top: 0; }
+main .vehicle_list .car .status_color.ok { background-color: #00aa01; }
+main .vehicle_list .car .status_color.error { background-color: #c8001c; }
+main .vehicle_list .car .status_color.warning { background-color: #eeeeee; }
+main .vehicle_list .car:nth-child(4n + 1) { margin-left: 0; }
+
+main .car_info { background: #fff; }
+main .car_info .container { background: #eeeeee; padding: 40px; }
+main .car_info .no_car_selected { text-align: center; }
+main .car_info .no_car_selected h1 { margin-bottom: 0; }
+main .car_info .car_selected .title { margin-top: 0; margin-bottom: 20px; line-height: 1.2em; }
+main .car_info .car_selected .property { font-size: 1.25em; text-transform: capitalize; }
+main .car_info .car_selected .property label { font-weight: 600; color: #616161; }
+
+main .error_list { background-color: #aaa; color: #fff; }
+main .error_list .title { color: #222; }
+main .error_list .table { display: table; width: 100%; -webkit-border-horizontal-spacing: 10px; }
+main .error_list .table .head,
+main .error_list .table .error { display: table-row; }
+main .error_list .table .head .title { font-size: 1.25em; background: #eee; color: #222; padding: 5px 10px; font-weight: 600; }
+main .error_list .error:last-child .cell { border-bottom: none; padding-bottom: 0; }
+main .error_list .table .cell { display: table-cell; padding: 15px 10px; border-bottom: 1px solid #eee; line-height: 1em; color: #555; }
+
+
+footer { position: relative; background-color: #E41936; }
+footer .wrap { text-align: center; padding: 2.5em 0; color: #fff; font-size: 1em; }
+
+/** Responsive Styles **/
+
+/*--------- 1080px and Down ---------*/
+@media (max-width: 1080px) {
+
+}
+
+/*--------- 960px And Down ---------*/
+@media (max-width:960px) {
+
+}
+
+/*--------- Portrait Tablet And Down ---------*/
+@media (max-width:800px) {
+    body { font-size: 14px; }
+    .mobile_show { display: block !important; }
+    .mobile_hide { display: none !important; }
+    .fixed_bg { background-attachment:initial !important; }
+    .navigation_spacing { margin-top: 110px; }
+    .onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol, .sevencol, .eightcol, .ninecol, .tencol, .elevencol, .twelvecol, .onehalf, .onethird { width:100%; margin:0; }
+
+    header .navigation .container { display: none; }
+
+    main .vehicle_list .car { margin-bottom: 10px; }
+    main .vehicle_list .car:last-child { margin-bottom: 0; }
+}
+
+/*--------- 767px Down ----------*/
+@media (max-width: 767px) {
+
+}
+
+/*--------- Landscape Phone ----------*/
+@media (max-width:640px) {
+
+}
+
+@media (max-width: 460px) {
+
+}
+
+/*--------- Portrait Phone ----------*/
+@media (max-width:360px) {
+
+}

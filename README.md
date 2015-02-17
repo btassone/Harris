@@ -1,3 +1,3 @@
-# Harris
+# Harris project
 
-This will eventually hold read me information for this design
+Readme stuff goes here
