@@ -2,9 +2,9 @@
 
 ## Installation Instructions
 
-npm install (may require sudo)
-bower install
-npm start (may require sudo)
+1. npm install (may require sudo)
+2. bower install
+3. npm start (may require sudo)
 
 http://localhost:8000/app
 
