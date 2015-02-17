@@ -1,8 +1,8 @@
 {
-  "name": "angular-seed",
-  "description": "A starter project for AngularJS",
-  "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-seed",
+  "name": "harris",
+  "description": "Future harris project description",
+  "version": "0.0.2",
+  "homepage": "https://github.com/btassone/Harris",
   "license": "MIT",
   "private": true,
   "dependencies": {
