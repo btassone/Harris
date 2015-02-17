@@ -110,7 +110,7 @@ main .car_info { background: #fff; }
 main .car_info .container { background: #eeeeee; padding: 40px; }
 main .car_info .no_car_selected { text-align: center; }
 main .car_info .no_car_selected h1 { margin-bottom: 0; }
-main .car_info .car_selected .title { margin-top: 0; margin-bottom: 20px; line-height: 1.2em; }
+main .car_info .car_selected .title { margin-top: 0; margin-bottom: 20px; line-height: 1.2em; word-wrap: break-word; overflow-wrap: break-word; }
 main .car_info .car_selected .property { font-size: 1.25em; text-transform: capitalize; }
 main .car_info .car_selected .property label { font-weight: 600; color: #616161; }
 
@@ -136,7 +136,7 @@ footer .wrap { text-align: center; padding: 2.5em 0; color: #fff; font-size: 1em
 
 /*--------- 960px And Down ---------*/
 @media (max-width:960px) {
-
+    main .vehicle_list .car { font-size: 12px; }
 }
 
 /*--------- Portrait Tablet And Down ---------*/
@@ -148,10 +148,17 @@ footer .wrap { text-align: center; padding: 2.5em 0; color: #fff; font-size: 1em
     .navigation_spacing { margin-top: 110px; }
     .onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol, .sevencol, .eightcol, .ninecol, .tencol, .elevencol, .twelvecol, .onehalf, .onethird { width:100%; margin:0; }
 
-    header .navigation .container { display: none; }
+    header .top .logo img { width: 130px; margin-bottom: -12px; }
+    header .navigation { font-size: 8px; }
+    header .navigation .container .item a { padding-left: 6px; padding-right: 6px; }
+    header .rtm .title { text-align: center; }
 
-    main .vehicle_list .car { margin-bottom: 10px; }
+    main .vehicle_list .row { margin-bottom: 0; }
+    main .vehicle_list .car { margin-bottom: 10px; font-size: 14px; width: 48.5%; margin-left: 3%; }
+    main .vehicle_list .car:nth-child(odd) { margin-left: 0; }
     main .vehicle_list .car:last-child { margin-bottom: 0; }
+
+    main .error_list { text-align: center; }
 }
 
 /*--------- 767px Down ----------*/
@@ -161,14 +168,23 @@ footer .wrap { text-align: center; padding: 2.5em 0; color: #fff; font-size: 1em
 
 /*--------- Landscape Phone ----------*/
 @media (max-width:640px) {
-
+    body { font-size: 12px; }
+    main .error_list .table { display: block; font-size: 10px; }
+    main .error_list .table .head,
+    main .error_list .table .error { display: block; }
+    main .error_list .table .cell { display: block; float: left; width: 31.7%; margin-left: 0.8%; margin-right: 0.8%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 }
 
 @media (max-width: 460px) {
+    header .navigation { font-size: 6px; }
 
+    main .vehicle_list .car { width: 100%; margin: 0 0 10px 0; }
+    main .vehicle_list .row { margin-bottom: 10px; }
 }
 
 /*--------- Portrait Phone ----------*/
 @media (max-width:360px) {
-
+    main .error_list .table { font-size: 8px; }
+    header .top .logo img { width: 90px; margin-bottom: -10px; }
+    header .navigation { font-size: 6px; }
 }

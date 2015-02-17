@@ -10,7 +10,7 @@ harrisApp.controller('RealTimeResultsCtrl', function($scope, $http) {
     });
     $http.get('models/errors/errors.json').success(function(data){
         $scope.errors = data;
-    })
+    });
 
     $scope.selected_car = null;
     $scope.clicked_car = function(car) {
