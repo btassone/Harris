@@ -1,7 +1,9 @@
 # Harris project
 
 ## Installation Instructions
-npm start
+npm install (may require sudo)
+bower install
+npm start (may require sudo)
 
 http://localhost:8000/app
 

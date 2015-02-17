@@ -1,10 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var harrisApp = angular.module('harris', [
-  'ngRoute',
-  'harris.version'
-]);
+var harrisApp = angular.module('harris', []);
 
 harrisApp.controller('RealTimeResultsCtrl', function($scope, $http) {
 
