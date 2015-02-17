@@ -3,13 +3,13 @@
 // Declare app level module which depends on views, and components
 var harrisApp = angular.module('harrisApp', []);
 
-harrisApp.controller('RealTimeResultsCtrl', function($scope, $http, CarDataService) {
+var car_amount = 16;
+var error_amount = 8;
 
-    $http.get('models/errors/errors.json').success(function(data){
-        $scope.errors = data;
-    });
+harrisApp.controller('RealTimeResultsCtrl', function($scope, $http, CarDataService, ErrorDataService) {
 
-    $scope.cars = CarDataService.random(16);
+    $scope.cars = CarDataService.randomCars(car_amount);
+    $scope.errors = ErrorDataService.randomErrors(error_amount);
 
     $scope.selected_car = null;
     $scope.clicked_car = function(car) {
