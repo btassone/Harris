@@ -1,6 +1,9 @@
 # Harris project
 
-## Installation Instructions
+Harris Capstone project for Liberty University.
+
+### Installation Instructions
+In a command terminal in the git root of the project run the following commands:
 
 1. npm install (may require sudo)
 2. bower install
