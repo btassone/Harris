@@ -35,7 +35,6 @@ harrisApp.service('CarDataService', function(GeneratorUtilityService) {
     function generateStatus() {
         var statuses = ["ok", "warning", "error"];
         var status = statuses[parseInt(GeneratorUtilityService.getRandomNumber(statuses.length)-1)];
-        console.log(parseInt(GeneratorUtilityService.getRandomNumber(statuses.length)-1));
 
         return status;
     }
@@ -76,8 +75,8 @@ harrisApp.service('ErrorDataService', function(GeneratorUtilityService) {
            for(var i = 0; i < amt; i++) {
                var result = {}
                result.vin = GeneratorUtilityService.generateVin();
-               result.code = "error.something";
-               result.message = "message";
+               result.code = "error.code";
+               result.message = "This is an error message";
 
                results.push(result);
            }
