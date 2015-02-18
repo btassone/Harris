@@ -1,4 +1,44 @@
+// Handles car data services generation
 harrisApp.service('CarDataService', function(GeneratorUtilityService) {
+
+    var make = "";
+
+    function generateMake() {
+        var makes = ["Ford", "Chrysler", "Hyundai", "Oldsmobile", "Saturn"];
+        var make = makes[parseInt(GeneratorUtilityService.getRandomNumber(makes.length-1))];
+        this.make = make;
+
+        return make;
+    }
+
+    function generateModel() {
+        var cars = {
+            "Ford": [ "2GA", "300", "7W", "Abeille", "Anglia", "Consul" ],
+            "Chrysler": [ "150", "200", "300M", "Airflow", "Airstream", "Aspen" ],
+            "Hyundai": [ "Accent", "Elentra", "Elentra Coupe", "Elantra GT", "Veloster" ],
+            "Oldsmobile": [ "Series 70", "Firenza", "Omega", "Regency", "Toronado", "Starfire" ],
+            "Saturn": [ "Astra", "Outlook", "Ion", "Curve", "Aura", "Vue" ]
+        };
+        var cset = cars[this.make];
+        var car = cset[parseInt(GeneratorUtilityService.getRandomNumber(cset.length-1))];
+
+        return car;
+    }
+
+    function generateYear() {
+        var maxYears = 15;
+        var baseYear = 2000;
+
+        return baseYear + parseInt(GeneratorUtilityService.getRandomNumber(maxYears));
+    }
+
+    function generateStatus() {
+        var statuses = ["ok", "warning", "error"];
+        var status = statuses[parseInt(GeneratorUtilityService.getRandomNumber(statuses.length)-1)];
+        console.log(parseInt(GeneratorUtilityService.getRandomNumber(statuses.length)-1));
+
+        return status;
+    }
 
     return {
         randomCars: function(amt) {
@@ -11,11 +51,11 @@ harrisApp.service('CarDataService', function(GeneratorUtilityService) {
                 for(var g = 0; g < cells; g++) {
                     var result = {};
                     result.pk_vin = GeneratorUtilityService.generateVin();
-                    result.make = "Ford";
-                    result.model = "Crown Victoria";
-                    result.year = 2007;
-                    result.description = "Rookie Car #1";
-                    result.status = "ok";
+                    result.make = generateMake();
+                    result.model = generateModel();
+                    result.year = generateYear();
+                    result.description = "This is a description";
+                    result.status = generateStatus();
 
                     row.push(result);
                 }
@@ -27,6 +67,7 @@ harrisApp.service('CarDataService', function(GeneratorUtilityService) {
     }
 });
 
+// Handles error data generation
 harrisApp.service('ErrorDataService', function(GeneratorUtilityService) {
    return {
        randomErrors: function(amt) {
