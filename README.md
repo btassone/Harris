@@ -20,6 +20,7 @@ If you wan't to poke around on my dev environment (it's my VM on my home Desktop
 **User Info**
 * User: harris
 * Password: JC(nS^_m#6hPpCG
+* Host: harris.brandont.me
 
 **FTP**
 * Port: 21
