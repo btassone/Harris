@@ -75,7 +75,7 @@ harrisApp.service('ErrorDataService', function(GeneratorUtilityService) {
            for(var i = 0; i < amt; i++) {
                var result = {}
                result.vin = GeneratorUtilityService.generateVin();
-               result.code = "error.code";
+               result.code = "P00" + (getRandomNumberWithTwoPlaces());
                result.message = "This is an error message";
 
                results.push(result);
@@ -119,4 +119,14 @@ harrisApp.service('GeneratorUtilityService', function() {
             return vin;
         }
     }
-})
+});
+
+function getRandomNumberWithTwoPlaces() {
+    var num = parseInt(Math.random() * 100);
+
+    if(num.toString().length % 2 != 0) {
+        num = "0" + num;
+    }
+
+    return num;
+}

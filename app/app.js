@@ -1,22 +1,30 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var harrisApp = angular.module('harrisApp', []);
+var harrisApp = angular.module('harrisApp', ['ngRoute', 'harrisControllers']);
 
-var car_amount = 16;
-var error_amount = 8;
+harrisApp.config(['$routeProvider',
+    function($routeProvider) {
+        $routeProvider.
+            when('/', {
+                templateUrl: 'partials/real-time.html',
+                controller: 'RealTimeResultsCtrl'
+            }).
+            when('/history', {
+                templateUrl: 'partials/history.html',
+                controller: 'HistoryCtrl'
+            }).
+            when('/settings', {
+               templateUrl: 'partials/settings.html',
+                controller: 'SettingsCtrl'
+            }).
+            otherwise({
+                redirectTo: '/app/'
+            });
+    }
+]);
 
-harrisApp.controller('RealTimeResultsCtrl', function($scope, $http, CarDataService, ErrorDataService) {
-
-    $scope.cars = CarDataService.randomCars(car_amount);
-    $scope.errors = ErrorDataService.randomErrors(error_amount);
-
-    $scope.selected_car = null;
-    $scope.clicked_car = function(car) {
-
-        car.clicked = ($scope.selected_car == car)  ? null : true;
-        $scope.selected_car = ($scope.selected_car == car) ? null : car;
-
-    };
-
+$("header .navigation .container .item").on('click', function() {
+    $("header .navigation .container .item").removeClass("active");
+    $(this).addClass("active");
 });
