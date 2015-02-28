@@ -1,5 +1,59 @@
 <div id="history" class="history">
     <div class="wrap wrap_thin">
-        <div id="chartDiv"></div>
+        <h1 class="uppercase">Car History</h1>
+        <div id="charts" class="charts">
+            <h3 class="uppercase">Charts</h3>
+            <!--<div class="no_charts" ng-if="charts == undefined">-->
+                <!--No car selected.-->
+            <!--</div>-->
+            <script>
+                var chartData = {
+                    "type": "bar",
+                    "series": [
+                        { "values": [35, 42, 67, 89, 25, 34, 67, 85] },
+                        { "values": [28, 57, 43, 56, 78, 99, 67, 28 ] }
+                    ]
+                };
+                window.onload=function() {
+                    zingchart.render({
+                        id: 'chartDiv',
+                        height: 400,
+                        width: "48%",
+                        data: chartData
+                    });
+                };
+            </script>
+            <div id="chartDiv"></div>
+        </div>
+        <div id="filters" class="filters">
+            <h3 class="uppercase">Filters</h3>
+            <div class="row">
+                <div class="sixcol">
+                    <fieldset class="cars_group">
+                        <legend>Cars</legend>
+                        <div class="car_row" ng-repeat="car in cars.info">
+                            <div class="cell">
+                                <input type="radio" class="car_checkbox" name="cars" value="{{car.pk_vin}}" ng-click="clicked_car(car)" />
+                            </div>
+                            <div class="cell">
+                                <label>{{car.pk_vin}}</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="sixcol">
+                    <div ng-if="clicked_car_fields != undefined">
+                        <div class="field_row" ng-repeat="field in clicked_car_fields">
+                            <div class="cell">
+                                <input type="checkbox" name="{{field}}" ng-value="field" />
+                            </div>
+                            <div class="cell">
+                                <label>{{field}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

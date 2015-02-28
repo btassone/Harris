@@ -2,6 +2,7 @@
 
 // Declare app level module which depends on views, and components
 var harrisApp = angular.module('harrisApp', ['ngRoute', 'harrisControllers']);
+harrisApp.vehicleListUrl = "http://vconnect-danieladams456.rhcloud.com:80/vehicle/list";
 
 harrisApp.config(['$routeProvider',
     function($routeProvider) {

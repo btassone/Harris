@@ -1,5 +1,5 @@
 // Handles car data services generation
-harrisApp.service('CarDataService', function(GeneratorUtilityService) {
+harrisApp.factory('CarFactory', ['$http', 'GeneratorUtilityService', function($http, GeneratorUtilityService) {
 
     var make = "";
 
@@ -62,9 +62,29 @@ harrisApp.service('CarDataService', function(GeneratorUtilityService) {
             }
 
             return results;
+        },
+        randomCarsNoRows: function(amt) {
+            var results = [];
+
+            for(var i = 0; i < amt; i++) {
+                var result = {};
+                result.pk_vin = GeneratorUtilityService.generateVin();
+                result.make = generateMake();
+                result.model = generateModel();
+                result.year = generateYear();
+                result.description = "This is a description";
+                result.status = generateStatus();
+
+                results.push(result);
+            }
+
+            console.log("Cart Info Generation");
+            console.log("--------------------");
+            console.log(results);
+            return results;
         }
     }
-});
+}]);
 
 // Handles error data generation
 harrisApp.service('ErrorDataService', function(GeneratorUtilityService) {
@@ -73,7 +93,7 @@ harrisApp.service('ErrorDataService', function(GeneratorUtilityService) {
            var results = [];
 
            for(var i = 0; i < amt; i++) {
-               var result = {}
+               var result = {};
                result.vin = GeneratorUtilityService.generateVin();
                result.code = "P00" + (getRandomNumberWithTwoPlaces());
                result.message = "This is an error message";
@@ -118,6 +138,51 @@ harrisApp.service('GeneratorUtilityService', function() {
 
             return vin;
         }
+    }
+});
+
+// Helper Factory
+harrisApp.factory('ChartFactory', function(GeneratorUtilityService, CarFactory) {
+
+    var num_of_cars = 5;
+    var cars = {};
+    var charts = {};
+
+    cars.info = CarFactory.randomCarsNoRows(num_of_cars);
+    cars.data = generateData(cars.info);
+
+    function generateData(cars) {
+        var maxes = {
+            speed: 150,
+            engine_rpm: 5000,
+            run_time_since_start: 200000,
+            fuel_level: 100,
+            oil_temp: 100,
+            accel_pos: 100,
+            dist_with_mil: 20000
+        };
+        var results = [];
+
+        for(var i = 0; i < cars.length; i++) {
+            var data = {};
+
+            Object.keys(maxes).forEach(function (cval, index, arr) {
+                var value = maxes[cval];
+
+                data[cval] = parseInt(GeneratorUtilityService.getRandomNumber(value));
+            });
+            data.vin = cars[i].pk_vin;
+
+            results.push(data);
+        }
+        console.log("Cart Data Generation");
+        console.log("--------------------");
+        console.log(results);
+        return results;
+    }
+
+    return {
+        cars: cars
     }
 });
 
