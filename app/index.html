@@ -16,6 +16,24 @@
 
         <script src="components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
         <script src="components/jquery/dist/jquery.min.js"></script>
+        <script src="components/zingchart/zingchart.min.js"></script>
+        <script>
+            var chartData = {
+                "type": "bar",
+                "series": [
+                    { "values": [35, 42, 67, 89, 25, 34, 67, 85] },
+                    { "values": [28, 57, 43, 56, 78, 99, 67, 28 ] }
+                ]
+            };
+            window.onload=function() {
+                zingchart.render({
+                    id: 'chartDiv',
+                    height: 400,
+                    width: 600,
+                    data: chartData
+                });
+            };
+        </script>
     </head>
     <body>
         <header>
