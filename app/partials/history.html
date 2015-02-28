@@ -3,26 +3,10 @@
         <h1 class="uppercase">Car History</h1>
         <div id="charts" class="charts">
             <h3 class="uppercase">Charts</h3>
-            <!--<div class="no_charts" ng-if="charts == undefined">-->
-                <!--No car selected.-->
-            <!--</div>-->
-            <script>
-                var chartData = {
-                    "type": "bar",
-                    "series": [
-                        { "values": [35, 42, 67, 89, 25, 34, 67, 85] },
-                        { "values": [28, 57, 43, 56, 78, 99, 67, 28 ] }
-                    ]
-                };
-                window.onload=function() {
-                    zingchart.render({
-                        id: 'chartDiv',
-                        height: 400,
-                        width: "48%",
-                        data: chartData
-                    });
-                };
-            </script>
+            <div class="note">Right now only values showing are speed (even if you click another checkbox, you still get speed)</div>
+            <div class="no_charts" ng-if="charts == undefined">
+                <strong>No car selected.</strong>
+            </div>
             <div id="chartDiv"></div>
         </div>
         <div id="filters" class="filters">
@@ -31,12 +15,12 @@
                 <div class="sixcol">
                     <fieldset class="cars_group">
                         <legend>Cars</legend>
-                        <div class="car_row" ng-repeat="car in cars.info">
+                        <div class="car_row" ng-repeat="car in cars.data">
                             <div class="cell">
-                                <input type="radio" class="car_checkbox" name="cars" value="{{car.pk_vin}}" ng-click="clicked_car(car)" />
+                                <input type="radio" class="car_checkbox" name="cars" value="{{car.vin}}" ng-click="clicked_car(car)" />
                             </div>
                             <div class="cell">
-                                <label>{{car.pk_vin}}</label>
+                                <label>{{car.vin}}</label>
                             </div>
                         </div>
                     </fieldset>
@@ -45,7 +29,7 @@
                     <div ng-if="clicked_car_fields != undefined">
                         <div class="field_row" ng-repeat="field in clicked_car_fields">
                             <div class="cell">
-                                <input type="checkbox" name="{{field}}" ng-value="field" />
+                                <input type="checkbox" class="field_boxes" name="{{field}}" ng-value="field" ng-click="clicked_field(field)" />
                             </div>
                             <div class="cell">
                                 <label>{{field}}</label>
