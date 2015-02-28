@@ -1,1 +1,30 @@
-TBD: Settings is setup? {{setup}}
+<div id="settings" class="settings">
+    <div class="wrap wrap_thin">
+        <h1 class="uppercase">Edit Car Settings</h1>
+        <div class="row">
+            <div class="car_row" ng-repeat="car in cars" ng-click="clicked_car(car)">
+                <div class="cell">
+                    <input type="radio" class="car_checkbox" name="cars" value="{{car.pk_vin}}" />
+                </div>
+                <div class="cell">
+                    <label>{{car.make}} {{car.model}}: {{car.pk_vin}}</label>
+                </div>
+            </div>
+            <div class="form_edit">
+                <div class="no_car_selected" ng-if="selected_car == null">
+                    <p class="uppercase">No car selected</p>
+                </div>
+                <div class="edit_form"  ng-if="selected_car != null">
+                    <form name="edit_vehicle" action="<!-- -->" method="PUT" ng-app="">
+                        <p class="setting_row"><label class="setting_title">VIN: </label><span class="setting_input" class="VIN">{{ selected_car.pk_vin }}</label></p>
+                        <p class="setting_row"><label class="setting_title">Model: </label><input class="setting_input" type="text" name="model" value="{{ selected_car.model }}" /></p>
+                        <p class="setting_row"><label class="setting_title">Make: </label><input class="setting_input" type="text" name="make" value="{{ selected_car.make }}" /></p>
+                        <p class="setting_row"><label class="setting_title">Year: </label><input class="setting_input" type="text" name="year" value="{{ selected_car.year }}" /></p>
+                        <p class="setting_row"><label class="setting_title">Description: </label><input class="setting_input" type="textbox" name="desc" value="{{ selected_car.description }}" /></p>
+                    <!--make functional once connected to scott's server <input type="submit" name="delete_data" value="Delete Data" /> <input type="submit" name="delete_vehicle" value="Delete Vehicle" /> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
