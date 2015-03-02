@@ -131,6 +131,15 @@ main .history .charts { margin-bottom: 40px; }
 main .history .filters .field_row .cell { vertical-align: middle; }
 main .history .filters .field_row .cell:last-child { padding-left: 10px; }
 
+main .settings .row .cell { vertical-align: top; }
+main .settings .row .cell:last-child  { padding-left: 10px; }
+main .settings .edit_form .setting_row:first-child { margin-top: 0; }
+main .settings .edit_form .uppercase p { margin-top: 0; }
+main .settings .row .edit_vehicle_settings { display: table-cell; }
+main .settings .row .form_edit { display: table-cell; padding-top: 0;}
+main .settings .row { display: table-row; }
+
+
 
 footer { position: relative; background-color: #E41936; }
 footer .wrap { text-align: center; padding: 2.5em 0; color: #fff; font-size: 1em; }

@@ -64,8 +64,16 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'C
         };
 }]);
 
-harrisControllers.controller('SettingsCtrl', ['$rootScope', '$scope', '$http',
-    function($rootScope, $scope, $http){
+harrisControllers.controller('SettingsCtrl', ['$rootScope', '$scope', '$http', 'CarFactory',
+    function($rootScope, $scope, $http, CarFactory){
         $rootScope.activeLink = "settings";
         $scope.setup = true;
+        $scope.cars = CarFactory.randomCarsNoRows(car_amount);
+        $scope.clicked_car = function(car) {
+
+            car.clicked = ($scope.selected_car == car)  ? null : true;
+            $scope.selected_car = ($scope.selected_car == car) ? null : car;
+
+        };
+
 }]);
