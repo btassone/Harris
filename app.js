@@ -24,10 +24,7 @@ harrisApp.config(['$routeProvider',
             when('/dataGen', {
                 templateUrl: 'partials/dataGen.html',
                 controller: 'AdminCtrl'
-            }).
-            otherwise({
-                redirectTo: '/app/'
-            });
+            })
     }
 ]);
 
