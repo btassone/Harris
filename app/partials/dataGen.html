@@ -1,0 +1,69 @@
+<div class="data_gen">
+    <div class="wrap wrap_thin">
+        <div class="info">
+            <h1 class="uppercase">Data Generation</h1>
+            <p>This is usually used with a fresh database. Use with caution. Not to be used in prod.</p>
+        </div>
+        <div class="section">
+            <label>Generate Vehicles</label>
+            <div class="description">Generates the mysql insert data needed.</div>
+            <div class="row">
+                <input type="text" ng-model="car_amount" name="car_amount" />
+                <button ng-click="generateCars(car_amount);">
+                    Generate Vehicles
+                </button>
+            </div>
+            <div class="car_data">
+                <div class="row output" ng-repeat="car in car_data">
+                    {{car}}
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <label>Delete All Vehicles</label>
+            <div class="description">Deletes all vehicles in the database</div>
+            <div class="row">
+                <button ng-click="deleteVehicles()">
+                    Delete {{car_list_amt}} Vehicles
+                </button>
+            </div>
+            <div class="car_data">
+                <div class="row output" ng-if="no_cars">
+                    No Cars
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <label>Generate Data For Each Car</label>
+            <div class="description">Generate Data for Current Cars</div>
+            <div class="row">
+                <input type="text" ng-model="travel_data_amount" name="travel_data_amount" />
+                <button ng-click="generateTravelData(travel_data_amount)">
+                    Generate Data
+                </button>
+            </div>
+            <div class="car_data">
+                <div class="row output">
+                    {{travelData}}
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <label>Generate Alerts</label>
+            <div class="description">Generate alerts for current cars</div>
+            <div class="row">
+                <button ng-click="generateAlerts()">
+                    Generate Alerts
+                </button>
+            </div>
+            <div class="car_data">
+                <div class="row output">
+                    {{alertData}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
