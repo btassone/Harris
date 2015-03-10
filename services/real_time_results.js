@@ -40,6 +40,19 @@ harrisApp.service('RealTimeResultsService', ['$http', function($http) {
             }
 
             return results;
+        },
+        getVehicles: function() {
+            var cars = null;
+
+            $http.get('/vehicle/list').
+                success(function (data, status, headers, config) {
+                    cars = data;
+                }).
+                error(function (data, status, headers, config) {
+                    console.log("Error");
+                });
+
+            return cars;
         }
     }
 }]);

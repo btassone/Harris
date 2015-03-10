@@ -1,44 +1,54 @@
-harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'ChartFactory',
-    function($rootScope, $scope, $http, ChartFactory){
+harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'RestFactory',
+    function($rootScope, $scope, $http, RestFactory){
 
-        $rootScope.activeLink = "history";
-        $scope.cars = ChartFactory.cars;
-        $scope.clicked_car_fields = [];
-        $scope.chart_fields = [];
-        $scope.selected_car = null;
+        var maxCarsChecked = 8;
+        var curCarsChecked = 0;
+        var propertyFields = ["vehicle_spee", "engine_rpm", "run_time_since_start", "fuel_level", "oil_temp",
+            "accel_pos", "dist_with_MIL"];
 
-        $scope.clicked_car = function(car) {
-            $scope.selected_car = car;
-            $scope.getClickedCarFields(car);
 
-            console.log($scope.selected_car);
-        };
+        $scope.cars = RestFactory.getVehicles();
+        $scope.queuedCars = [];
+        $scope.disableCars = false;
+        $scope.carProperties = propertyFields;
 
-        $scope.getClickedCarFields = function(car) {
-            var fields = [];
-            Object.keys(car).forEach(function(cval, index, arr) {
-                if(cval != "$$hashKey")
-                    fields.push(cval);
+        $scope.queueCar = function(car) {
+
+            var carInQueue = false;
+
+            $scope.queuedCars.forEach(function(element, index, array) {
+                if(element.pk_vin == car.pk_vin) {
+                    carInQueue = true;
+                    array.splice(index, 1);
+                    curCarsChecked--;
+                }
             });
-            $scope.clicked_car_fields = fields;
 
-            // Clear Chart Fields
-            $scope.chart_fields = [];
-            $(".field_boxes").each(function(){
-                $(this).removeAttr('checked');
-            });
-            $scope.charts = undefined;
-        };
+            if(curCarsChecked < maxCarsChecked) {
+                if (!carInQueue) {
+                    $scope.queuedCars.push(car);
+                    curCarsChecked++;
+                }
 
-        $scope.clicked_field = function(field) {
-            var field_index = $scope.chart_fields.indexOf(field);
-            $scope.charts = true;
-            if(field_index == -1) {
-                $scope.chart_fields.push(field);
-                ChartFactory.generateChart($scope.selected_car, $scope.chart_fields);
-            } else {
-                $scope.chart_fields.splice(field_index, 1);
+                if(curCarsChecked < maxCarsChecked) {
+                    $scope.disableCars = false;
+                } else {
+                    $scope.disableCars = true;
+                }
             }
+
         };
+
+        $scope.carInQueue = function(car) {
+            var foundCar = false;
+
+            $scope.queuedCars.forEach(function(element, index, array){
+                if(element.pk_vin == car.pk_vin) {
+                    foundCar = true;
+                }
+            });
+
+            return foundCar;
+        }
     }
 ]);
