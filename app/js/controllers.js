@@ -75,8 +75,4 @@ harrisControllers.controller('SettingsCtrl', ['$rootScope', '$scope', '$http', '
             $scope.selected_car = ($scope.selected_car == car) ? null : car;
 
         };
-    function settingsController($scope,$http) {
-        $http.get("/services/db_connect.php")
-        .success(function(response) {$scope.names = response;});
-    }
 }]);

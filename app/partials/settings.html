@@ -3,12 +3,12 @@
     <div class="wrap wrap_thin">
         <h1 class="uppercase">Edit Car Settings</h1>
         <div class="row">
-            <div class="car_row" ng-repeat="names in vehicles" ng-click="clicked_car(car)">
+            <div class="car_row" ng-repeat="car in cars" ng-click="clicked_car(car)">
                 <div class="cell">
                     <input type="radio" class="car_checkbox" name="cars" value="{{car.pk_vin}}" />
                 </div>
                 <div class="cell">
-                    <label>{{names.make}} {{names.model}}: {{names.pk_vin}}</label>
+                    <label>{{car.make}} {{car.model}}: {{car.pk_vin}}</label>
                 </div>
             </div>
             <div class="form_edit">
