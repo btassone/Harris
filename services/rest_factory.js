@@ -15,14 +15,12 @@ harrisApp.factory('RestFactory', ['$http', function($http) {
             return d.cars;
         },
         getVehicleData: function(vin) {
-            var carDataHistory = new Object();
-            carDataHistory.data = null;
 
-            $http.get('/vehicle/data/' + vin).success(function(data){
-               carDataHistory.data = data;
+            var ret = $http.get('/vehicle/data/' + vin).success(function (data) {
+                return data;
             });
 
-            return carDataHistory.data;
+            return ret;
         }
     }
 }]);

@@ -1,22 +1,41 @@
 <div id="history" class="history">
     <div class="wrap wrap_thin">
         <h1 class="uppercase">Car History</h1>
-        <div class="onehalf">
-            <div class="cars">
-                <fieldset>
-                    <div class="car" ng-repeat="car in cars">
-                        <input type="checkbox" name="car" ng-disabled="disableCars && !carInQueue(car)" value="{{car.pk_vin}}" ng-click="queueCar(car)" /> {{car.pk_vin}}
-                    </div>
-                </fieldset>
+        <div class="row">
+            <div class="col">
+                <div class="cars box_sizing">
+                    <h3>Vehicle List</h3>
+                    <fieldset>
+                        <div class="car" ng-repeat="car in cars">
+                            <input type="checkbox" name="car" ng-disabled="disableCars && !carInQueue(car)" value="{{car.pk_vin}}" ng-click="queueCar(car)" /> {{car.pk_vin}}
+                        </div>
+                    </fieldset>
+                </div>
             </div>
-        </div>
-        <div class="onehalf">
-            <div class="properties" ng-if="queuedCars.length > 0">
-                <fieldset>
-                    <div class="property" ng-repeat="prop in carProperties">
-                        <input type="checkbox" name="carProperty" value="{{prop}}" /> {{prop}}
+            <div class="col">
+                <div class="properties">
+                    <h3>Car Options</h3>
+                    <fieldset>
+                        <div class="prop_container">
+                            <div class="property" ng-repeat="prop in carProperties">
+                                <input type="checkbox" ng-disabled="disableProperties && !propInQueue(prop)" ng-click="queueProp(prop)" name="carProperty" value="{{prop}}" /> {{prop}}
+                            </div>
+                        </div>
+                        <div class="btn_container">
+                            <button class="cdata_btn" ng-click="createCharts()">
+                                See Chart Data
+                            </button>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="charts box_sizing">
+                    <div class="chart" ng-repeat="chart in carDataCharts">
+                        <div id="chart_one"></div>
+                        <div id="chart_two"></div>
+                        <div id="chart_three"></div>
+                        <div id="chart_four"></div>
                     </div>
-                </fieldset>
+                </div>
             </div>
         </div>
     </div>

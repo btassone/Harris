@@ -3,6 +3,7 @@ var error_amount = 8;
 harrisControllers.controller('RealTimeResultsCtrl', ['$rootScope', '$scope', '$http', 'RealTimeResultsService',
     function($rootScope, $scope, $http, RealTimeResultsService) {
 
+        $rootScope.pageTitle = "Real Time Monitoring";
         $scope.errors = null;
 
         $scope.getVehicles = function() {
