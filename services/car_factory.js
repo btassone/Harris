@@ -1,5 +1,5 @@
 // Handles car data services generation
-harrisApp.factory('CarFactory', ['$http', 'GeneratorUtilityService', function($http, GeneratorUtilityService) {
+harrisApp.factory('CarFactory', ['GeneratorUtilityService', function(GeneratorUtilityService) {
 
     function generateMake() {
         var makes = ["Ford", "Chrysler", "Hyundai", "Oldsmobile", "Saturn"];
@@ -32,8 +32,6 @@ harrisApp.factory('CarFactory', ['$http', 'GeneratorUtilityService', function($h
 
     function generateTimestamp() {
 
-        var timestamp = "";
-
         function generateDate() {
             var year = "2015";
             var month = "03";
@@ -56,9 +54,7 @@ harrisApp.factory('CarFactory', ['$http', 'GeneratorUtilityService', function($h
             return hour + ":" + minute + ":" + second;
         }
 
-        timestamp = generateDate() + " " + generateTime();
-
-        return timestamp;
+        return generateDate() + " " + generateTime();
     }
 
     function generateVehicleSpeed() {
@@ -182,13 +178,12 @@ harrisApp.factory('CarFactory', ['$http', 'GeneratorUtilityService', function($h
             var start = "INSERT INTO vehicles (pk_vin, make, model, year, description) VALUES(";
             var end = ");";
 
-            cars.forEach(function(car, index, array){
-                var str = "";
+            cars.forEach(function(car){
                 var count = 1;
-                str = start;
+                var str = start;
 
                 for(var prop in car) {
-                    console.log(count + ":" + car.size);
+
                     if(count == Object.size(car)) {
                         str += "'" + car[prop] + "'"
                     } else {

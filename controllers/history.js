@@ -9,17 +9,32 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
         var propertyFields = ["vehicle_speed", "engine_rpm", "run_time_since_start", "fuel_level", "oil_temp",
             "accel_pos", "dist_with_MIL"];
 
+        // Local Functions
+        function getCarList() {
+            var carList = RestFactory.getVehicles();
+            var list = [];
+
+            carList.success(function (cList) {
+                cList.forEach(function(car){
+                    list.push(car);
+                });
+            });
+
+            return list;
+        }
+
         // Root Scope Properties
         $rootScope.pageTitle = "History";
 
         // Scope Properties
-        $scope.cars = RestFactory.getVehicles();
+        $scope.cars = getCarList();
         $scope.queuedCars = [];
         $scope.queuedProps = [];
         $scope.disableCars = false;
         $scope.disableProperties = false;
         $scope.carProperties = propertyFields;
-
+        $scope.charts = [];
+        $scope.chartCount = 1;
 
         // Scope Methods
         $scope.queueCar = function(car) {
@@ -40,11 +55,7 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
                     curCarsChecked++;
                 }
 
-                if(curCarsChecked < maxCarsChecked) {
-                    $scope.disableCars = false;
-                } else {
-                    $scope.disableCars = true;
-                }
+                $scope.disableCars = !(curCarsChecked < maxCarsChecked);
             }
         };
 
@@ -65,18 +76,14 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
                     curProps++;
                 }
 
-                if(curProps < maxProps) {
-                    $scope.disableProperties = false;
-                } else {
-                    $scope.disableProperties = true;
-                }
+                $scope.disableProperties = !(curProps < maxProps);
             }
         };
 
         $scope.propInQueue = function(prop) {
             var foundProp = false;
 
-            $scope.queuedProps.forEach(function(element, index, array){
+            $scope.queuedProps.forEach(function(element){
                 if(element == prop) {
                     foundProp = true;
                 }
@@ -88,7 +95,7 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
         $scope.carInQueue = function(car) {
             var foundCar = false;
 
-            $scope.queuedCars.forEach(function(element, index, array){
+            $scope.queuedCars.forEach(function(element){
                 if(element.pk_vin == car.pk_vin) {
                     foundCar = true;
                 }
@@ -97,11 +104,10 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
             return foundCar;
         };
 
-        $scope.charts = [];
-        $scope.chartCount = 1;
-
         // TODO: Refactor the heck out of this createCharts function.
         $scope.createCharts = function() {
+
+            // Local Properties
             var cars = $scope.queuedCars;
             var props = $scope.queuedProps;
             var start = "[";
@@ -114,11 +120,13 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
             var cHeight = 400;
             var cWidth = "100%";
 
+            // Base Properties for ZingChart Render
             var renderDefaultObj = {};
             renderDefaultObj.id = 'chartDiv';
             renderDefaultObj.height = cHeight;
             renderDefaultObj.width = cWidth;
 
+            // If we are creating new charts we need to make sure to delete the old ones
             if($scope.charts.length > 0) {
                 $scope.chartCount = 1;
 
@@ -128,6 +136,7 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
                 zingchart.exec('chartDiv4', 'destroy');
             }
 
+            // If we have at least 1 car and 1 prop selected
             if( cars.length >= 1 && props.length >= 1) {
                 var vcount = 0;
                 var pcount = 0;

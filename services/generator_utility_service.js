@@ -1,7 +1,6 @@
 // Helper Service
 harrisApp.service('GeneratorUtilityService', function() {
 
-
     return {
         // Takes a string, returns an array
         toCharArray: function(str)
