@@ -6,7 +6,7 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
         var curCarsChecked = 0;
         var maxProps = 4;
         var curProps = 0;
-        var propertyFields = ["vehicle_spee", "engine_rpm", "run_time_since_start", "fuel_level", "oil_temp",
+        var propertyFields = ["vehicle_speed", "engine_rpm", "run_time_since_start", "fuel_level", "oil_temp",
             "accel_pos", "dist_with_MIL"];
 
         // Root Scope Properties
@@ -16,7 +16,6 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
         $scope.cars = RestFactory.getVehicles();
         $scope.queuedCars = [];
         $scope.queuedProps = [];
-        $scope.carDataCharts = [];
         $scope.disableCars = false;
         $scope.disableProperties = false;
         $scope.carProperties = propertyFields;
@@ -98,20 +97,86 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
             return foundCar;
         };
 
+        $scope.charts = [];
+        $scope.chartCount = 1;
+
+        // TODO: Refactor the heck out of this createCharts function.
         $scope.createCharts = function() {
             var cars = $scope.queuedCars;
             var props = $scope.queuedProps;
+            var start = "[";
+            var end = ']';
+            var vins = [];
+            var vinString = start;
+            var propString = start;
+            var dataObj = {};
+            var vdataRestObj = {};
+            var cHeight = 400;
+            var cWidth = "100%";
 
-            var carData = [];
-            var charts = [];
+            var renderDefaultObj = {};
+            renderDefaultObj.id = 'chartDiv';
+            renderDefaultObj.height = cHeight;
+            renderDefaultObj.width = cWidth;
 
-            if( cars.length >= 1 && props.length >= 1) {
-                cars.forEach(function(car, index, array){
-                    carData.push(RestFactory.getVehicleData(car.pk_vin));
-                });
+            if($scope.charts.length > 0) {
+                $scope.chartCount = 1;
+
+                zingchart.exec('chartDiv1', 'destroy');
+                zingchart.exec('chartDiv2', 'destroy');
+                zingchart.exec('chartDiv3', 'destroy');
+                zingchart.exec('chartDiv4', 'destroy');
             }
 
-            charts = ChartFactory.getCharts(cars, props, carData)
+            if( cars.length >= 1 && props.length >= 1) {
+                var vcount = 0;
+                var pcount = 0;
+
+                cars.forEach(function(it){
+                    vins.push(it.pk_vin);
+                });
+
+                vins.forEach(function(it) {
+
+                    if(vcount < vins.length-1) {
+                        vinString += '"' + it + '",';
+                    } else {
+                        vinString += '"' + it + '"';
+                    }
+                    vcount++;
+                });
+
+                props.forEach(function(it){
+                    if(pcount < props.length-1) {
+                        propString += '"' + it + '",';
+                    } else {
+                        propString += '"' + it + '"';
+                    }
+                    pcount++
+                });
+
+                vinString += end;
+                propString += end;
+
+                dataObj.vinString = vinString;
+                dataObj.propString = propString;
+
+                vdataRestObj = RestFactory.getVehicleData(dataObj);
+
+                vdataRestObj.success(function(data){
+                    $scope.charts = ChartFactory.getCharts(cars, props, data);
+
+                    $scope.charts.forEach(function(chart){
+                        $scope['chartName' + ($scope.chartCount)] = chart.propName;
+                        renderDefaultObj.id = 'chartDiv' + $scope.chartCount;
+                        renderDefaultObj.data = chart.chart;
+
+                        $scope.chartCount++;
+
+                        zingchart.render(renderDefaultObj);
+                    })
+                });
+            }
         }
     }
 ]);

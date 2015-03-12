@@ -1,28 +1,54 @@
-harrisApp.factory('ChartFactory', ['$http', 'GeneratorUtilityService', 'RestFactory',
-    function($http, GeneratorUtilityService, RestFactory) {
-
-        var chart_data = {
-            "type": "line"
-        };
-
+harrisApp.factory('ChartFactory',
+    function() {
         return {
-            getCharts: function(cars, props, carData) {
-                carData.forEach(function(cData){
-                    cData.success(function(data){
-                        var car = cars.forEach(function(c){
-                            var the_car = null;
+            // TODO: Refactor the heck out of this getCharts function.
+            getCharts: function(cars, props, vData) {
 
-                            if(data[0].vin == c.pk_vin) {
-                                the_car = c;
+                var charts = [];
+
+                props.forEach(function(prop){
+                    var propObjToPush = {
+                        propName: prop
+                    };
+                    propObjToPush.chart = {};
+                    var chart_data = {
+                        "type": "line",
+                        "title": {
+                            "text": prop
+                        },
+                        "scale-x": {
+                            "label": {
+                                "text": "Instances"
                             }
+                        },
+                        "scale-y": {
+                            "label": {
+                                "text": prop
+                            }
+                        }
+                    };
+                    chart_data.series = [];
+                    cars.forEach(function(car){
+                        var carPropValues = [];
 
-                            console.log(the_car);
-                            return the_car;
+                        vData.forEach(function(data){
+                            if(data.vin == car.pk_vin) {
+                                // console.log(car.pk_vin, prop, data);
+
+                                carPropValues.push(data[prop]);
+                            }
                         });
-                        console.log("car", car);
-                        chart_data.series = [];
+
+                        //console.log(prop, car, carPropValues);
+                        chart_data.series.push({
+                            "values": carPropValues
+                        });
                     });
+                    propObjToPush.chart = chart_data;
+                    charts.push(propObjToPush);
                 });
+
+                return charts;
             }
         }
-    }]);
+    });

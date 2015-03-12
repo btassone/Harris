@@ -134,9 +134,16 @@ main .history .cars { background: #eee; padding: 40px; }
 main .history .col { float: left; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 main .history .col:first-child { width: 35%; }
 main .history .col:last-child { width: 65%; padding-left: 5%; }
-main .history .properties { background: #eee; padding: 40px; }
+main .history .properties { background: #eee; padding: 40px; margin-bottom: 40px; }
 main .history .property { display: inline-block; margin-right: 10px; }
 main .history .btn_container { margin-top: 20px; }
+main .history .chart { width: 50%; float: left; margin-bottom: 40px; padding: 0 20px; }
+#chartDiv1, #chartDiv3 { padding-left: 0; }
+#chartDiv2, #chartDiv4 { padding-right: 0; }
+main .history .chart:last-child { margin-bottom: 0; }
+main .history .chart_row { position: relative; margin-bottom: 40px; background: #eee; }
+main .history .chart_row.has_charts { margin-bottom: 0; background: none; }
+main .history .chart_row h1 { position: absolute; left: 50%; top: 50%; }
 
 main .data_gen .section { margin-bottom: 40px; }
 main .data_gen .section label { font-size: 1.5em; margin-bottom: 0; line-height: 1em; }

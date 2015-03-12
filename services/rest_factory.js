@@ -14,11 +14,13 @@ harrisApp.factory('RestFactory', ['$http', function($http) {
 
             return d.cars;
         },
-        getVehicleData: function(vin) {
+        getVehicleData: function(vdataObj) {
 
-            var ret = $http.get('/vehicle/data/' + vin).success(function (data) {
-                return data;
-            });
+            var urlString = '/data?VIN=' + encodeURIComponent(vdataObj.vinString) +
+                '&data_elements=' + encodeURIComponent(vdataObj.propString) +
+                '&start_time=' + encodeURIComponent('2015-01-07T22:11:01.000Z') +
+                '&end_time=' + encodeURIComponent('2015-07-07T22:11:01.000Z');
+            var ret = $http.get(urlString);
 
             return ret;
         }
