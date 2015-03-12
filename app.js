@@ -4,7 +4,18 @@
 var harrisApp = angular.module('harrisApp', ['ngRoute', 'harrisControllers']);
 var harrisControllers = angular.module('harrisControllers', []);
 
-harrisApp.vehicleListUrl = "http://vconnect-danieladams456.rhcloud.com:80/vehicle/list";
+// Values for Routes (used in RestFactory)
+harrisApp.value('alert', '/alert');
+harrisApp.value('alertNew', '/alert/new');
+harrisApp.value('alertId', '/alert/');
+
+harrisApp.value('data', '/data');
+harrisApp.value('dataSchema', '/data/schema');
+
+harrisApp.value('vehicleList', '/vehicle/list');
+harrisApp.value('vehicleVin', '/vehicle/');
+harrisApp.value('vehicleInfo', '/vehicle/info/');
+harrisApp.value('vehicleData', '/vehicle/data/');
 
 harrisApp.config(['$routeProvider',
     function($routeProvider) {
