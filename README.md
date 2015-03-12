@@ -11,4 +11,4 @@ In a command terminal in the git root of the project run the following commands:
 2. bower install
 3. npm start (may require sudo)
 
-http://localhost:8000/
+http://localhost:8080/
