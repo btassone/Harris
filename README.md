@@ -1,7 +1,8 @@
 # Harris project
 
-**Current Version:** 0.4.6.1
 Harris Capstone project for Liberty University.
+
+**Current Version:** 0.4.6.1
 
 ### Installation Instructions
 In a command terminal in the git root of the project run the following commands:
