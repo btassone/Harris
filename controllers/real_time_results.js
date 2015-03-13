@@ -39,14 +39,15 @@ harrisControllers.controller('RealTimeResultsCtrl', ['$rootScope', '$scope', '$h
 
             var cvin = '["' + car.pk_vin + '"]';
             var dels = '["vehicle_speed", "engine_rpm", "run_time_since_start", "fuel_level", "oil_temp", "accel_pos", "dist_with_MIL"]';
+            var today = new Date();
             var start = "2015-03-02 00:00:00";
-            var end = "2015-03-06 00:00:00";
+            var end = today.getFullYear() + "-" + (today.getMonth()+1) + "-" + today.getDate() + " 23:59:59";
             var dataObj = {};
 
             dataObj.vinString = cvin;
             dataObj.propString = dels;
-            dataObj.startTime = start;
-            dataObj.endTime = end;
+            dataObj.startDate = start;
+            dataObj.endDate = end;
 
             car.clicked = ($scope.selected_car == car)  ? null : true;
 

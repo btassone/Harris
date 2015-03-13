@@ -12,7 +12,7 @@ harrisApp.factory('RestFactory', ['$http', 'alert', 'alertNew', 'alertId', 'data
                 data.year = carInfo.year;
                 data.description = carInfo.description;
 
-                return $http.put(vehicleVindatanfo.vin, carInfo);
+                return $http.put(vehicleVin + carInfo.vin, data);
             },
             getVehicleData: function(vDataObj) {
 
