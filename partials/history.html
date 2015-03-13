@@ -30,12 +30,16 @@
                                 <input type="checkbox" ng-disabled="disableProperties && !propInQueue(prop)" ng-click="queueProp(prop)" name="carProperty" value="{{prop}}" /> {{prop}}
                             </div>
                         </div>
-                        <div class="btn_container">
-                            <button class="cdata_btn" ng-click="createCharts()">
-                                See Chart Data
-                            </button>
-                        </div>
                     </fieldset>
+                    <div class="date_container">
+                        <input type="date" name="date_start" ng-model="dateRange.start" min="{{minDate}} max="{{currentDate()}}"> -
+                        <input type="date" name="date_end" ng-model="dateRange.end" min="{{minDate}}" max="{{currentDate()}}">
+                    </div>
+                    <div class="btn_container">
+                        <button class="cdata_btn" ng-click="createCharts()">
+                            See Chart Data
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

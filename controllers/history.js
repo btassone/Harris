@@ -35,8 +35,19 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
         $scope.carProperties = propertyFields;
         $scope.charts = [];
         $scope.chartCount = 1;
+        $scope.minDate = "2014-12-01";
+        $scope.dateRange = {};
+        $scope.dateRange.start = "";
+        $scope.dateRange.end = "";
 
         // Scope Methods
+        $scope.currentDate = function() {
+            var today = new Date();
+            var retStr = today.getFullYear() + "-" + (today.getMonth()+1) + "-" + today.getDate();
+
+            return retStr;
+        };
+
         $scope.queueCar = function(car) {
 
             var carInQueue = false;
@@ -110,6 +121,8 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
             // Local Properties
             var cars = $scope.queuedCars;
             var props = $scope.queuedProps;
+            var startDate = $scope.dateRange.start;
+            var endDate = $scope.dateRange.end;
             var start = "[";
             var end = ']';
             var vins = [];
@@ -137,7 +150,7 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
             }
 
             // If we have at least 1 car and 1 prop selected
-            if( cars.length >= 1 && props.length >= 1) {
+            if( cars.length >= 1 && props.length >= 1 && startDate && endDate) {
                 var vcount = 0;
                 var pcount = 0;
 
@@ -169,6 +182,8 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
 
                 dataObj.vinString = vinString;
                 dataObj.propString = propString;
+                dataObj.startDate = startDate + " 00:00:00";
+                dataObj.endDate = endDate + " 23:59:59";
 
                 vdataRestObj = RestFactory.getVehicleData(dataObj);
 
