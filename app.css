@@ -149,6 +149,18 @@ main .data_gen .section { margin-bottom: 40px; }
 main .data_gen .section label { font-size: 1.5em; margin-bottom: 0; line-height: 1em; }
 main .data_gen .section .description { font-size: 0.875em; margin-bottom: 20px; }
 
+main .settings { background: #a5a5a5; }
+main .settings .cars { background: #eee; padding: 40px; }
+main .settings .col { float: left; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+main .settings .col:first-child { width: 35%; }
+main .settings .col:last-child { width: 65%; padding-left: 5%; }
+main .settings .edit { background-color: #eee; padding: 40px; }
+main .settings .table { display: table; width: 100%; }
+main .settings .cell { display: table-cell; }
+main .settings .cell:first-child { width: 150px; }
+main .settings .edit_vehicle_wrap .buttons { margin-top: 20px; }
+main .settings .message_wrap { background: #eee; padding: 40px; margin-top: 40px; }
+
 footer { position: relative; background-color: #E41936; }
 footer .wrap { text-align: center; padding: 2.5em 0; color: #fff; font-size: 1em; }
 

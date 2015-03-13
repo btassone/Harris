@@ -5,6 +5,15 @@ harrisApp.factory('RestFactory', ['$http', 'alert', 'alertNew', 'alertId', 'data
             getVehicles: function() {
                 return $http.get(vehicleList);
             },
+            putVehicle: function(carInfo) {
+                var data = {};
+                data.model = carInfo.model;
+                data.make = carInfo.make;
+                data.year = carInfo.year;
+                data.description = carInfo.description;
+
+                return $http.put(vehicleVin + carInfo.vin, data);
+            },
             getVehicleData: function(vDataObj) {
 
                 // TODO: Remove backup date ranges once date picker is added

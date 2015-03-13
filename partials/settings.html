@@ -1,1 +1,85 @@
-TBD: Settings is setup? {{setup}}
+<div class="settings" id="settings">
+    <div class="wrap wrap_thin">
+        <h1 class="uppercase">Change Vehicle Settings</h1>
+        <div class="container row">
+            <div class="col">
+                <div class="cars box_sizing">
+                    <h3>Vehicle List</h3>
+                    <fieldset>
+                        <div class="car" ng-repeat="car in cars">
+                            <input ng-checked="{{selectedCar.pk_vin == car.pk_vin}}" type="radio" name="car" value="{{car.pk_vin}}" ng-click="selectCar(car)" /> {{car.pk_vin}}
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="edit box_sizing">
+                    <h3>Edit Vehicle</h3>
+                    <div class="edit_default_message" ng-if="!selectedCar">
+                        Select a car from the list to edit it.
+                    </div>
+                    <div class="edit_vehicle_wrap" ng-if="selectedCar">
+                        <div class="table">
+                            <div class="vin">
+                                <div class="cell">
+                                    <label class="uppercase">Vin: </label>
+                                </div>
+                                <div class="cell">
+                                    {{inputData.vin}}
+                                </div>
+                            </div>
+                            <div class="make">
+                                <div class="cell">
+                                    <label class="uppercase">Make: </label>
+                                </div>
+                                <div class="cell">
+                                    <input type="text" ng-model="inputData.make" />
+                                </div>
+                            </div>
+                            <div class="model">
+                                <div class="cell">
+                                    <label class="uppercase">Model: </label>
+                                </div>
+                                <div class="cell">
+                                    <input type="text" ng-model="inputData.model" />
+                                </div>
+                            </div>
+                            <div class="year">
+                                <div class="cell">
+                                    <label class="uppercase">Year: </label>
+                                </div>
+                                <div class="cell">
+                                    <input type="text" ng-model="inputData.year" />
+                                </div>
+                            </div>
+                            <div class="description">
+                                <div class="cell">
+                                    <label class="uppercase">Description: </label>
+                                </div>
+                                <div class="cell">
+                                    <textarea ng-model="inputData.description">
+
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <button class="delete_car" ng-click="deleteCar(inputData)">Delete Car</button>
+                            <button class="save_car" ng-click="saveCar(inputData)">Save Car</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="message_wrap" ng-if="responseMessage || (errorMessage.vin || errorMessage.message)">
+                    <div class="response_message" ng-if="responseMessage">
+                        {{responseMessage}}
+                    </div>
+                    <div class="error-message" ng-if="errorMessage.vin || errorMessage.message">
+                        <div class="err_vin">Vehicle {{errorMessage.vin}} encountered an error</div>
+                        <div class="err_msg">Error message: {{errorMessage.message}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
