@@ -11,11 +11,34 @@ harrisControllers.controller('RealTimeResultsCtrl', ['$rootScope', '$scope', '$h
 
         // Scope Methods
         $scope.getVehicles = function() {
+            // Local Properties
             var vehicles = RestFactory.getVehicles();
+
             vehicles.success(function (cars) {
-                $scope.cars = cars;
-                $scope.cars = RealTimeResultsService.setStatus($scope.cars);
-                $scope.cars = RealTimeResultsService.rowifyData($scope.cars);
+
+                var alerts = RestFactory.getNewAlerts();
+                cars.forEach(function(car){
+                    car.status = "ok";
+                });
+
+                alerts.success(function(alerts) {
+
+                    alerts.forEach(function(alert){
+
+                        var aVin = alert.vin;
+
+                        cars.forEach(function(car){
+
+                            var cVin = car.pk_vin;
+
+                            if(cVin == aVin) {
+                                car.status = "error";
+                            }
+                        });
+                    });
+                }).then(function(data) {
+                    $scope.cars = RealTimeResultsService.rowifyData(cars);
+                });
             });
         };
 
