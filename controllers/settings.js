@@ -44,6 +44,12 @@ harrisControllers.controller('SettingsCtrl', ['$rootScope', '$scope', '$http', '
         $scope.errorMessage.message = "";
 
         $scope.selectCar = function(car) {
+
+            // Reset response messages on new car selection
+            $scope.responseMessage = "";
+            $scope.errorMessage.vin = "";
+            $scope.errorMessage.message = "";
+
             $scope.selectedCar = car;
 
             $scope.inputData.vin = car.pk_vin;

@@ -21,7 +21,7 @@ harrisApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
             when('/', {
-                templateUrl: 'partials/real-time.html',
+                templateUrl: 'partials/realTime.html',
                 controller: 'RealTimeResultsCtrl'
             }).
             when('/history', {
@@ -38,6 +38,12 @@ harrisApp.config(['$routeProvider',
             })
     }
 ]);
+
+harrisApp.run(['$rootScope', function($rootScope){
+    $rootScope.copyrightYear = function() {
+        return (new Date()).getFullYear();
+    };
+}]);
 
 $("header .navigation .container .item").on('click', function() {
     $("header .navigation .container .item").removeClass("active");

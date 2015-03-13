@@ -11,6 +11,9 @@ harrisControllers.controller('AdminCtrl', ['$rootScope', '$scope', '$http', 'Car
             });
         }
 
+        // Root Scope Property
+        $rootScope.pageTitle = "Data Generation"
+
         // Scope Properties
         $scope.car_amount = 0;
         $scope.car_data = null;

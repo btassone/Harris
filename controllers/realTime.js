@@ -36,7 +36,7 @@ harrisControllers.controller('RealTimeResultsCtrl', ['$rootScope', '$scope', '$h
                             }
                         });
                     });
-                }).then(function(data) {
+                }).then(function() {
                     $scope.cars = RealTimeResultsService.rowifyData(cars);
                 });
             });
