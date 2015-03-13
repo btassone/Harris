@@ -214,6 +214,20 @@ footer .wrap { text-align: center; padding: 2.5em 0; color: #fff; font-size: 1em
     main .vehicle_list .car:last-child { margin-bottom: 0; }
 
     main .error_list { text-align: center; }
+
+    main #history .col { width: 100%; margin-bottom: 40px; }
+    main #history .col:last-child { margin-bottom: 0; padding-left: 0; }
+    main #history .chart { width: 100%; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
+    main #history .chart:last-child { margin-bottom: 40px; }
+    main #history .chart_row h1 {  width: 100%; text-align: center; padding-left: 20px; padding-right: 20px; }
+    main #history .section_title { text-align: center; }
+
+    main #settings .section_title { text-align: center; }
+    main #settings .col { width: 100%; margin-bottom: 40px; }
+    main #settings .col:last-child { margin-bottom: 0; padding-left: 0; }
+
+    main .error_list .table .error .message { display: none; }
+    main .error_list .table .head .title:last-child { display: none; }
 }
 
 /*--------- 767px Down ----------*/
@@ -228,10 +242,15 @@ footer .wrap { text-align: center; padding: 2.5em 0; color: #fff; font-size: 1em
     main .error_list .table .head,
     main .error_list .table .error { display: block; }
     main .error_list .table .cell { display: block; float: left; width: 31.7%; margin-left: 0.8%; margin-right: 0.8%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+    main .error_list .table { font-size: 10px; }
+    main .error_list .table .cell { padding: 5px 0; }
 }
 
 @media (max-width: 460px) {
     header .navigation { font-size: 6px; }
+
+    main .error_list .table { font-size: 8px; }
 
     main .vehicle_list .car { width: 100%; margin: 0 0 10px 0; }
     main .vehicle_list .row { margin-bottom: 10px; }

@@ -2,7 +2,7 @@
 
 Harris Capstone project for Liberty University.
 
-**Current Version:** 0.5.5
+**Current Version:** 0.5.6
 
 ### Installation Instructions
 In a command terminal in the git root of the project run the following commands:
