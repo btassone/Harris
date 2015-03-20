@@ -205,7 +205,7 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
 
                         if($scope.charts[0].error.hasOne) {
                             $scope.chartError = true;
-                            $scope.chartErrorMsg = $scope.charts[0].error.vins.join() + ' have no data. Un-select these vehicles for the ' +
+                            $scope.chartErrorMsg = $scope.charts[0].error.vins.join() + ' has no data. Un-select these vehicles for the ' +
                             'charts to work';
                         } else {
                             $scope.charts.forEach(function (chart) {

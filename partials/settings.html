@@ -7,7 +7,13 @@
                     <h3>Vehicle List</h3>
                     <fieldset>
                         <div class="car" ng-repeat="car in cars">
-                            <input ng-checked="{{selectedCar.pk_vin == car.pk_vin}}" type="radio" name="car" value="{{car.pk_vin}}" ng-click="selectCar(car)" /> {{car.pk_vin}}
+                            <div class="cell">
+                                <input ng-checked="{{selectedCar.pk_vin == car.pk_vin}}" type="radio" name="car" value="{{car.pk_vin}}" ng-click="selectCar(car)" />
+                            </div>
+                            <div class="cell identifier">
+                                <div>{{car.year}} {{car.make}} {{car.model}}</div>
+                                <div>{{car.description}}</div>
+                            </div>
                         </div>
                     </fieldset>
                 </div>
