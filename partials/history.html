@@ -12,13 +12,15 @@
         </div>
         <div class="row">
             <div class="col">
-                <div class="cars box_sizing">
-                    <h3>Vehicle List</h3>
-                    <fieldset>
-                        <div class="car" ng-repeat="car in cars">
-                            <input type="checkbox" name="car" ng-disabled="disableCars && !carInQueue(car)" value="{{car.pk_vin}}" ng-click="queueCar(car)" /> {{car.pk_vin}}
-                        </div>
-                    </fieldset>
+                <div class="cars_wrap">
+                    <div class="cars box_sizing">
+                        <h3>Vehicle List</h3>
+                        <fieldset>
+                            <div class="car" ng-repeat="car in cars">
+                                <input type="checkbox" name="car" ng-disabled="disableCars && !carInQueue(car)" value="{{car.pk_vin}}" ng-click="queueCar(car)" /> {{car.pk_vin}}
+                            </div>
+                        </fieldset>
+                    </div>
                 </div>
             </div>
             <div class="col">
