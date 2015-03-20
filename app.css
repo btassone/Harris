@@ -145,6 +145,8 @@ main .history .chart_row { position: relative; margin-bottom: 40px; background: 
 main .history .chart_row.has_charts { margin-bottom: 0; background: none; }
 main .history .chart_row h1 { position: absolute; left: 50%; top: 50%; }
 main .history .date_container { margin-top: 15px; }
+main .history .date_container label { display: block; font-weight: 600; color: #222; margin-bottom: 5px; }
+main .history .date_container .end_date_time { margin-top: 20px; }
 
 main .data_gen .section { margin-bottom: 40px; }
 main .data_gen .section label { font-size: 1.5em; margin-bottom: 0; line-height: 1em; }

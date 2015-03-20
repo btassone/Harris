@@ -32,8 +32,15 @@
                         </div>
                     </fieldset>
                     <div class="date_container">
-                        <input type="date" name="date_start" ng-model="dateRange.start" min="{{minDate}}" max="{{currentDate()}}"> -
-                        <input type="date" name="date_end" ng-model="dateRange.end" min="{{minDate}}" max="{{currentDate()}}">
+                        <div class="start_date_time">
+                            <label>Start Date & Time</label>
+                            <input type="date" name="date_start" ng-model="dateRange.start.date" min="{{minDate}}" max="{{currentDate()}}">
+                            <input type="time" name="time_start" ng-model="dateRange.start.time" /></div>
+                        <div class="end_date_time">
+                            <label>End Date & Time</label>
+                            <input type="date" name="date_end" ng-model="dateRange.end.date" min="{{minDate}}" max="{{currentDate()}}">
+                            <input type="time" name="time_end" ng-model="dateRange.end.time" />
+                        </div>
                     </div>
                     <div class="btn_container">
                         <button class="cdata_btn" ng-click="createCharts()">

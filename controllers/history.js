@@ -37,8 +37,12 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
         $scope.chartCount = 1;
         $scope.minDate = "2014-12-01";
         $scope.dateRange = {};
-        $scope.dateRange.start = "";
-        $scope.dateRange.end = "";
+        $scope.dateRange.start = {};
+        $scope.dateRange.start.date = "";
+        $scope.dateRange.start.time = "00:00:00";
+        $scope.dateRange.end = {};
+        $scope.dateRange.end.date = "";
+        $scope.dateRange.end.time = "23:59:00";
 
         // Scope Methods
         $scope.currentDate = function() {
@@ -121,8 +125,10 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
             // Local Properties
             var cars = $scope.queuedCars;
             var props = $scope.queuedProps;
-            var startDate = $scope.dateRange.start;
-            var endDate = $scope.dateRange.end;
+            var startDate = $scope.dateRange.start.date;
+            var startTime = $scope.dateRange.start.time;
+            var endDate = $scope.dateRange.end.date;
+            var endTime = $scope.dateRange.end.time;
             var start = "[";
             var end = ']';
             var vins = [];
@@ -182,8 +188,8 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
 
                 dataObj.vinString = vinString;
                 dataObj.propString = propString;
-                dataObj.startDate = startDate + " 00:00:00";
-                dataObj.endDate = endDate + " 23:59:59";
+                dataObj.startDate = startDate + " " + startTime;
+                dataObj.endDate = endDate + " " + endTime;
 
                 vdataRestObj = RestFactory.getVehicleData(dataObj);
 
@@ -198,7 +204,7 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
                         $scope.chartCount++;
 
                         zingchart.render(renderDefaultObj);
-                    })
+                    });
                 });
             }
         }
