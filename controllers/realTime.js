@@ -6,7 +6,7 @@ harrisControllers.controller('RealTimeResultsCtrl', ['$rootScope', '$scope', '$h
         $rootScope.activeLink = "realTime";
 
         // Scope Properties
-        $scope.errors = null;
+        $scope.errors = [];
         $scope.selected_car = null;
 
         // Scope Methods
@@ -44,8 +44,24 @@ harrisControllers.controller('RealTimeResultsCtrl', ['$rootScope', '$scope', '$h
 
         $scope.getAlerts = function () {
             var alerts = RestFactory.getNewAlerts();
-            alerts.success(function (data) {
-                $scope.errors = data;
+            alerts.success(function (errors) {
+                $scope.errors = [];
+                var carsInfo = RestFactory.getVehicles();
+                carsInfo.success(function(carInfo){
+
+                    carInfo.forEach(function(ci){
+
+                       errors.forEach(function(error){
+
+                           if(ci.pk_vin == error.vin) {
+                               $scope.errors.push({
+                                   carInfo: ci,
+                                   error: error
+                               });
+                           }
+                       })
+                    });
+                });
             });
         };
 
@@ -78,10 +94,12 @@ harrisControllers.controller('RealTimeResultsCtrl', ['$rootScope', '$scope', '$h
             vehicleData.success(function(vData) {
                 if(vData) {
                     var clicked = car.clicked;
-                    car = vData[0];
+                    var d = {};
+                    d.data = vData[0];
+                    d.carInfo = car;
                     car.clicked = clicked;
 
-                    $scope.selected_car = ($scope.selected_car == car) ? null : car;
+                    $scope.selected_car = ($scope.selected_car == car) ? null : d;
                 } else {
                     $scope.selected_car = 'no_data';
                 }

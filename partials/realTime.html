@@ -3,7 +3,10 @@
         <div class="row" ng-repeat="row in cars">
             <div class="threecol car box_sizing bold transition_3sec" ng-class="{clicked: selected_car.vin == car.pk_vin}" ng-repeat="car in row" ng-click="clicked_car(car)">
                 <div class="info">
-                    <div class="vin">{{car.pk_vin}}</div>
+                    <div class="vin">
+                        <div>{{car.year}} {{car.make}} {{car.model}}</div>
+                        <div>{{car.description}}</div>
+                    </div>
                     <div class="status uppercase">{{car.status}}</div>
                 </div>
                 <div class="status_color" ng-class="{ok: car.status == 'ok', error: car.status == 'error', warning: car.status == 'warning'}"></div>
@@ -21,38 +24,41 @@
                 <h1 class="uppercase">Car has no data</h1>
             </div>
             <div class="car_selected" ng-if="selected_car != null && selected_car != 'no_data'">
-                <h1 class="title">{{selected_car.vin}}</h1>
+                <h1 class="title">
+                    <div>{{selected_car.carInfo.year}} {{selected_car.carInfo.make}} {{selected_car.carInfo.model}}</div>
+                    <div>{{selected_car.carInfo.description}}</div>
+                </h1>
                 <div class="vin property">
                     <label class="uppercase">Vin:</label>
-                    {{selected_car.vin}}
+                    {{selected_car.data.vin}}
                 </div>
                 <div class="vs property">
                     <label class="uppercase">Vehicle Speed:</label>
-                    {{selected_car.vehicle_speed}}
+                    {{selected_car.data.vehicle_speed}}
                 </div>
                 <div class="erpm property">
                     <label class="uppercase">Engine RPM:</label>
-                    {{selected_car.engine_rpm}}
+                    {{selected_car.data.engine_rpm}}
                 </div>
                 <div class="rtss property">
                     <label class="uppercase">Run Time Since Start:</label>
-                    {{ (selected_car.run_time_since_start / 60) / 60 | number: 2}} Hours
+                    {{ (selected_car.data.run_time_since_start / 60) / 60 | number: 2}} Hours
                 </div>
                 <div class="fuel property">
                     <label class="uppercase">Fuel Level:</label>
-                    {{selected_car.fuel_level}}%
+                    {{selected_car.data.fuel_level}}%
                 </div>
                 <div class="oil property">
                     <label class="uppercase">Oil Temp:</label>
-                    {{selected_car.oil_temp}}
+                    {{selected_car.data.oil_temp}}
                 </div>
                 <div class="accel property">
                     <label class="uppercase">Accelerator Position:</label>
-                    {{selected_car.accel_pos}}%
+                    {{selected_car.data.accel_pos}}%
                 </div>
                 <div class="mil property">
                     <label class="uppercase">Distance with MIL Indicator:</label>
-                    {{selected_car.dist_with_MIL}}
+                    {{selected_car.data.dist_with_MIL}}
                 </div>
             </div>
         </div>
@@ -61,21 +67,26 @@
 <div class="error_list">
     <div class="wrap wrap_thin">
         <h1 class="title uppercase">Error History</h1>
-        <div class="table" ng-if="errors">
+        <div class="table" ng-if="errors.length > 0">
             <div class="head">
                 <div class="title uppercase cell bold">Vin</div>
                 <div class="title uppercase cell bold">Timestamp</div>
                 <div class="title uppercase cell bold">Code</div>
                 <div class="title uppercase cell bold">Message</div>
             </div>
-            <div class="error" ng-repeat="error in errors">
-                <div class="vin cell"><a href="javascript:;" ng-click="seenAlert(error.pk_edp)">{{error.vin}}</a></div>
-                <div class="timestamp cell">{{error.timestamp}}</div>
-                <div class="code cell">{{error.trouble_code}}</div>
-                <div class="message cell">{{error.message}}</div>
+            <div class="error" ng-repeat="errorSet in errors">
+                <div class="vin cell">
+                    <a href="javascript:;" ng-click="seenAlert(errorSet.error.pk_edp)">
+                        {{errorSet.carInfo.year}} {{errorSet.carInfo.make}} {{errorSet.carInfo.model}} |
+                        {{errorSet.carInfo.description}}
+                    </a>
+                </div>
+                <div class="timestamp cell">{{errorSet.error.timestamp}}</div>
+                <div class="code cell">{{errorSet.error.trouble_code}}</div>
+                <div class="message cell">{{errorSet.error.message}}</div>
             </div>
         </div>
-        <div class="no_alerts" ng-if="!errors">
+        <div class="no_alerts" ng-if="errors.length < 1">
             No alerts.
         </div>
     </div>
