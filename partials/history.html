@@ -1,8 +1,11 @@
 <div id="history" class="history">
     <div class="wrap wrap_thin">
         <h1 class="section_title uppercase">Car History</h1>
-        <div class="row chart_row" ng-class="{ has_charts: (charts.length > 0) }">
-            <h1 class="transform_nxy_50" ng-if="charts.length < 1">No Chart Data</h1>
+        <div class="row chart_row" ng-class="{ has_charts: (charts.length > 0) && !chartError }">
+            <h1 class="transform_nxy_50" ng-if="charts.length < 1 && !chartError">No Chart Data</h1>
+            <div class="chart_error transform_ny_50" ng-if="chartError">
+                {{chartErrorMsg}}
+            </div>
             <div class="charts box_sizing">
                 <div class="chart box_sizing" id="chartDiv1"></div>
                 <div class="chart box_sizing" id="chartDiv2"></div>

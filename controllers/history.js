@@ -38,11 +38,13 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
         $scope.minDate = "2014-12-01";
         $scope.dateRange = {};
         $scope.dateRange.start = {};
-        $scope.dateRange.start.date = "";
+        $scope.dateRange.start.date = "2015-03-01";
         $scope.dateRange.start.time = "00:00:01";
         $scope.dateRange.end = {};
-        $scope.dateRange.end.date = "";
+        $scope.dateRange.end.date = "2015-03-07";
         $scope.dateRange.end.time = "23:59:59";
+        $scope.chartError = false;
+        $scope.chartErrorMsg = '';
 
         // Scope Methods
         $scope.currentDate = function() {
@@ -145,6 +147,9 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
             renderDefaultObj.height = cHeight;
             renderDefaultObj.width = cWidth;
 
+            $scope.chartError = false;
+            $scope.chartErrorMsg = "";
+
             // If we are creating new charts we need to make sure to delete the old ones
             if($scope.charts.length > 0) {
                 $scope.chartCount = 1;
@@ -194,19 +199,46 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
                 vdataRestObj = RestFactory.getVehicleData(dataObj);
 
                 vdataRestObj.success(function(data){
-                    $scope.charts = ChartFactory.getCharts(cars, props, data);
 
-                    $scope.charts.forEach(function(chart){
-                        $scope['chartName' + ($scope.chartCount)] = chart.propName;
-                        renderDefaultObj.id = 'chartDiv' + $scope.chartCount;
-                        renderDefaultObj.data = chart.chart;
+                    if(data != '') {
+                        $scope.charts = ChartFactory.getCharts(cars, props, data);
 
-                        $scope.chartCount++;
+                        if($scope.charts[0].error.hasOne) {
+                            $scope.chartError = true;
+                            $scope.chartErrorMsg = $scope.charts[0].error.vins.join() + ' have no data. Un-select these vehicles for the ' +
+                            'charts to work';
+                        } else {
+                            $scope.charts.forEach(function (chart) {
+                                $scope['chartName' + ($scope.chartCount)] = chart.propName;
+                                renderDefaultObj.id = 'chartDiv' + $scope.chartCount;
+                                renderDefaultObj.data = chart.chart;
 
-                        zingchart.render(renderDefaultObj);
-                    });
+                                $scope.chartCount++;
+
+                                zingchart.render(renderDefaultObj);
+                            });
+                        }
+                    } else {
+                        $scope.chartError = true;
+                        $scope.chartErrorMsg = "No cars selected have data.";
+                    }
                 });
             }
         }
     }
 ]);
+
+function carInSelected(selectedCars, testDataWithVin) {
+    var carInSelected = false;
+
+    selectedCars.forEach(function(sc){
+        testDataWithVin.forEach(function(td){
+            console.log(sc,td);
+            if(sc.pk_vin == td.vin) {
+                carInSelected = true;
+            }
+        });
+    });
+
+    return carInSelected
+}
