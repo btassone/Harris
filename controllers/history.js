@@ -39,10 +39,10 @@ harrisControllers.controller('HistoryCtrl', ['$rootScope', '$scope', '$http', 'R
         $scope.dateRange = {};
         $scope.dateRange.start = {};
         $scope.dateRange.start.date = "";
-        $scope.dateRange.start.time = "00:00:00";
+        $scope.dateRange.start.time = "00:00:01";
         $scope.dateRange.end = {};
         $scope.dateRange.end.date = "";
-        $scope.dateRange.end.time = "23:59:00";
+        $scope.dateRange.end.time = "23:59:59";
 
         // Scope Methods
         $scope.currentDate = function() {
