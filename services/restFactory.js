@@ -27,6 +27,9 @@ harrisApp.factory('RestFactory', ['$http', 'alert', 'alertNew', 'alertId', 'data
             postVehicleData: function(dataObj) {
                 return $http.post(data, dataObj);
             },
+            deleteVehicleData: function(vin) {
+                return $http.delete(vehicleInfo + vin);
+            },
             deleteVehicle: function(vin) {
                 var urlString = vehicleVin + vin;
                 return $http.delete(urlString);

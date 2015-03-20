@@ -76,11 +76,15 @@ harrisControllers.controller('RealTimeResultsCtrl', ['$rootScope', '$scope', '$h
 
             var vehicleData = RestFactory.getVehicleData(dataObj);
             vehicleData.success(function(vData) {
-                var clicked = car.clicked;
-                car = vData[0];
-                car.clicked = clicked;
+                if(vData) {
+                    var clicked = car.clicked;
+                    car = vData[0];
+                    car.clicked = clicked;
 
-                $scope.selected_car = ($scope.selected_car == car) ? null : car;
+                    $scope.selected_car = ($scope.selected_car == car) ? null : car;
+                } else {
+                    $scope.selected_car = 'no_data';
+                }
             });
         };
 

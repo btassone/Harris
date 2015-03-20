@@ -110,8 +110,8 @@ main .vehicle_list .car:nth-child(4n + 1) { margin-left: 0; }
 
 main .car_info { background: #fff; }
 main .car_info .container { background: #eeeeee; padding: 40px; }
-main .car_info .no_car_selected { text-align: center; }
-main .car_info .no_car_selected h1 { margin-bottom: 0; }
+main .car_info .no_car_selected, main .car_info .car_has_no_data { text-align: center; }
+main .car_info .no_car_selected h1, main .car_info .car_has_no_data h1 { margin-bottom: 0; }
 main .car_info .car_selected .title { margin-top: 0; margin-bottom: 20px; line-height: 1.2em; word-wrap: break-word; overflow-wrap: break-word; }
 main .car_info .car_selected .property { font-size: 1.25em; text-transform: capitalize; }
 main .car_info .car_selected .property label { font-weight: 600; color: #616161; }
@@ -175,7 +175,7 @@ main .settings .message_wrap.success { background-color: #00aa01; color: #fff; }
 main .settings .message_wrap.error { background-color: #c8001c; color: #fff; }
 main .settings .button_wrap { margin-top: 40px; }
 main .settings .button_wrap .table { display: table; width: 100%; text-align: center; border-collapse: collapse; }
-main .settings .button_wrap .cell { display: table-cell; height: 60px; width: 50%; position: relative; }
+main .settings .button_wrap .cell { display: table-cell; height: 60px; width: 33.3%; position: relative; }
 main .settings .button_wrap .cell:first-child { border-right: 40px solid transparent; }
 main .settings .button_wrap .cell:last-child { border-left: 40px solid transparent; }
 main .settings .button_wrap button { border: none; background: #eee; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }

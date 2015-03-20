@@ -17,7 +17,10 @@
             <div class="no_car_selected" ng-if="selected_car == null">
                 <h1 class="uppercase">No car selected</h1>
             </div>
-            <div class="car_selected" ng-if="selected_car != null">
+            <div class="car_has_no_data" ng-if="selected_car == 'no_data'">
+                <h1 class="uppercase">Car has no data</h1>
+            </div>
+            <div class="car_selected" ng-if="selected_car != null && selected_car != 'no_data'">
                 <h1 class="title">{{selected_car.vin}}</h1>
                 <div class="vin property">
                     <label class="uppercase">Vin:</label>

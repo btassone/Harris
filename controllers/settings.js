@@ -97,7 +97,22 @@ harrisControllers.controller('SettingsCtrl', ['$rootScope', '$scope', '$http', '
 
                 $scope.errorMessage.vin = inputData.vin;
                 $scope.errorMessage.message = data.message;
-            })
+            });
+        };
+
+        $scope.deleteCarData = function(inputData) {
+            var deleteCarData = RestFactory.deleteVehicleData(inputData.vin);
+            deleteCarData.success(function(){
+                $scope.errorMessage.vin = "";
+                $scope.errorMessage.message = "";
+
+                $scope.responseMessage = "The data and alerts for vehicle " + inputData.vin + " have been successfully deleted";
+            }).error(function(data){
+                $scope.responseMessage = "";
+
+                $scope.errorMessage.vin = inputData.vin;
+                $scope.errorMessage.message = data.message;
+            });
         };
     }
 ]);
