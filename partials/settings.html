@@ -1,0 +1,103 @@
+<div class="settings" id="settings">
+    <div class="wrap wrap_thin">
+        <h1 class="section_title uppercase">Change Vehicle Settings</h1>
+        <div class="container row">
+            <div class="col">
+                <div class="cars box_sizing">
+                    <h3>Vehicle List</h3>
+                    <fieldset>
+                        <div class="car" ng-repeat="car in cars">
+                            <div class="cell">
+                                <input ng-checked="{{selectedCar.pk_vin == car.pk_vin}}" type="radio" name="car" value="{{car.pk_vin}}" ng-click="selectCar(car)" />
+                            </div>
+                            <div class="cell identifier">
+                                <div>{{car.year}} {{car.make}} {{car.model}}</div>
+                                <div class="descshort">{{car.description}}</div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="edit box_sizing transition_3sec" ng-class="{success: responseMessage, error: (errorMessage.vin || errorMessage.message)}">
+                    <h3>Edit Vehicle</h3>
+                    <div class="edit_default_message transition_3sec" ng-if="!selectedCar">
+                        Select a car from the list to edit it.
+                    </div>
+                    <div class="edit_vehicle_wrap transition_3sec" ng-if="selectedCar">
+                        <div class="table">
+                            <div class="vin vfield_row">
+                                <div class="cell">
+                                    <label class="uppercase">Vin: </label>
+                                </div>
+                                <div class="cell">
+                                    <div class="box_sizing">{{inputData.vin}}</div>
+                                </div>
+                            </div>
+                            <div class="make vfield_row">
+                                <div class="cell">
+                                    <label class="uppercase">Make: </label>
+                                </div>
+                                <div class="cell">
+                                    <input type="text" ng-model="inputData.make" />
+                                </div>
+                            </div>
+                            <div class="model vfield_row">
+                                <div class="cell">
+                                    <label class="uppercase">Model: </label>
+                                </div>
+                                <div class="cell">
+                                    <input type="text" ng-model="inputData.model" />
+                                </div>
+                            </div>
+                            <div class="year vfield_row">
+                                <div class="cell">
+                                    <label class="uppercase">Year: </label>
+                                </div>
+                                <div class="cell">
+                                    <input type="text" ng-model="inputData.year" />
+                                </div>
+                            </div>
+                            <div class="description vfield_row">
+                                <div class="cell">
+                                    <label class="uppercase">Description: </label>
+                                </div>
+                                <div class="cell">
+                                    <textarea ng-model="inputData.description" >
+                                    <textarea ng-model="inputData.description" >
+
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="message_wrap box_sizing" ng-if="responseMessage || (errorMessage.vin || errorMessage.message)" ng-class="{success: responseMessage, error: (errorMessage.vin || errorMessage.message)}">
+                    <div class="response_message" ng-if="responseMessage">
+                        {{responseMessage}}
+                    </div>
+                    <div class="error-message" ng-if="errorMessage.vin || errorMessage.message">
+                        <div class="err_vin">Vehicle {{errorMessage.vin}} encountered an error</div>
+                        <div class="err_msg">Error message: {{errorMessage.message}}</div>
+                    </div>
+                </div>
+                <div class="button_wrap" ng-if="selectedCar">
+                    <div class="buttons">
+                        <div class="table">
+                            <div class="cell transition_3sec">
+                                <button class="save_car transition_3sec" ng-click="saveCar(inputData)">Save Car</button>
+                            </div>
+                            <div class="cell transition_3sec">
+                                <button class="delete_car_data transition_3sec" ng-click="deleteCarData(inputData)">Delete Car Data</button>
+                            </div>
+                            <div class="cell transition_3sec">
+                                <button class="delete_car transition_3sec" ng-click="deleteCar(inputData)">Delete Car</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

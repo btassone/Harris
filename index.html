@@ -26,20 +26,20 @@
                 </div>
                 <div class="wrap box_sizing">
                     <div class="logo">
-                        <a href="/app/#/"><img class="transition_3sec" src="images/logo.png" /></a>
+                        <a href="/#/"><img class="transition_3sec" src="images/logo.png" /></a>
                     </div>
                     <div class="navigation">
                         <ul class="container transform_ny_50 h4_size bold uppercase">
-                            <li class="item transition_3sec" ng-class="{active: activeLink == 'realTime'}"><a class="transform_ny_50" href="/app/#/">Real Time</a></li>
-                            <li class="item transition_3sec" ng-class="{active: activeLink == 'history'}"><a class="transform_ny_50" href="/app/#/history">History</a></li>
-                            <li class="item transition_3sec" ng-class="{active: activeLink == 'settings'}"><a class="transform_ny_50" href="/app/#/settings">Settings</a></li>
+                            <li class="item transition_3sec" ng-class="{active: activeLink == 'realTime'}"><a class="transform_ny_50" href="/#/">Real Time</a></li>
+                            <li class="item transition_3sec" ng-class="{active: activeLink == 'history'}"><a class="transform_ny_50" href="/#/history">History</a></li>
+                            <li class="item transition_3sec" ng-class="{active: activeLink == 'settings'}"><a class="transform_ny_50" href="/#/settings">Settings</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="rtm">
                 <div class="wrap box_sizing">
-                    <h1 class="title uppercase semibold">Real Time Monitoring</h1>
+                    <h1 class="title uppercase semibold">{{pageTitle}}</h1>
                 </div>
             </div>
         </header>
@@ -48,7 +48,7 @@
 
         <footer>
             <div class="wrap">
-                Copyright 2014 © Harris Corporation. All Rights Reserved.
+                Copyright {{copyrightYear()}} © Harris Corporation. All Rights Reserved.
             </div>
         </footer>
         <!-- In production use:
@@ -57,7 +57,14 @@
         <script src="components/angular/angular.js"></script>
         <script src="components/angular-route/angular-route.js"></script>
         <script src="app.js"></script>
-        <script src="services/services.js"></script>
-        <script src="js/controllers.js"></script>
+        <script src="services/realTime.js"></script>
+        <script src="services/restFactory.js"></script>
+        <script src="services/carFactory.js"></script>
+        <script src="services/chartFactory.js"></script>
+        <script src="services/generatorUtilityService.js"></script>
+        <script src="controllers/realTime.js"></script>
+        <script src="controllers/history.js"></script>
+        <script src="controllers/settings.js"></script>
+        <script src="controllers/dataGen.js"></script>
     </body>
 </html>

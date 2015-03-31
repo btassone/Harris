@@ -1,0 +1,93 @@
+<div class="vehicle_list">
+    <div class="wrap wrap_thin">
+        <div class="row" ng-repeat="row in cars">
+            <div class="threecol car box_sizing bold transition_3sec" ng-class="{clicked: selected_car.vin == car.pk_vin}" ng-repeat="car in row" ng-click="clicked_car(car)">
+                <div class="info">
+                    <div class="vin">
+                        <div>{{car.year}} {{car.make}} {{car.model}}</div>
+                        <div class="descshort">{{car.description}}</div>
+                    </div>
+                    <div class="status uppercase">{{car.status}}</div>
+                </div>
+                <div class="status_color" ng-class="{ok: car.status == 'ok', error: car.status == 'error', warning: car.status == 'warning'}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="car_info">
+    <div class="wrap wrap_thin">
+        <div class="container">
+            <div class="no_car_selected" ng-if="selected_car == null">
+                <h1 class="uppercase">No car selected</h1>
+            </div>
+            <div class="car_has_no_data" ng-if="selected_car == 'no_data'">
+                <h1 class="uppercase">Car has no data</h1>
+            </div>
+            <div class="car_selected" ng-if="selected_car != null && selected_car != 'no_data'">
+                <h1 class="title">
+                    <div>{{selected_car.carInfo.year}} {{selected_car.carInfo.make}} {{selected_car.carInfo.model}}</div>
+                    <div>{{selected_car.carInfo.description}}</div>
+                </h1>
+                <div class="vin property">
+                    <label class="uppercase"><img src="images/vin.png" height="25" width="25" /> Vin:</label>
+                    {{selected_car.data.vin}}
+                </div>
+                <div class="vs property">
+                    <label class="uppercase"><img src="images/mph.png" height="25" width="25" /> Vehicle Speed:</label>
+                    {{selected_car.data.vehicle_speed}}
+                </div>
+                <div class="erpm property">
+                    <label class="uppercase"><img src="images/rpm.png" height="25" width="25" /> Engine RPM:</label>
+                    {{selected_car.data.engine_rpm}}
+                </div>
+                <div class="rtss property">
+                    <label class="uppercase"><img src="images/time.png" height="25" width="25" /> Run Time Since Start:</label>
+                    {{ (selected_car.data.run_time_since_start / 60) / 60 | number: 2}} Hours
+                </div>
+                <div class="fuel property">
+                    <label class="uppercase"><img src="images/gas.png" height="25" width="25" /> Fuel Level:</label>
+                    {{selected_car.data.fuel_level}}%
+                </div>
+                <div class="oil property">
+                    <label class="uppercase"><img src="images/oil.png" height="25" width="25" /> Oil Temp:</label>
+                    {{selected_car.data.oil_temp}}
+                </div>
+                <div class="accel property">
+                    <label class="uppercase"><img src="images/acl.png" height="25" width="25" /> Accelerator Position:</label>
+                    {{selected_car.data.accel_pos}}%
+                </div>
+                <div class="mil property">
+                    <label class="uppercase"><img src="images/mil.png" height="25" width="25" /> Distance with MIL Indicator:</label>
+                    {{selected_car.data.dist_with_MIL}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="error_list">
+    <div class="wrap wrap_thin">
+        <h1 class="title uppercase">Error History</h1>
+        <div class="table" ng-if="errors.length > 0">
+            <div class="head">
+                <div class="title uppercase cell bold">Vin</div>
+                <div class="title uppercase cell bold">Timestamp</div>
+                <div class="title uppercase cell bold">Code</div>
+                <div class="title uppercase cell bold">Message</div>
+            </div>
+            <div class="error" ng-repeat="errorSet in errors">
+                <div class="vin cell">
+                    <a href="javascript:;" ng-click="seenAlert(errorSet.error.pk_edp)">
+                        {{errorSet.carInfo.year}} {{errorSet.carInfo.make}} {{errorSet.carInfo.model}} |
+                        {{errorSet.carInfo.description}}
+                    </a>
+                </div>
+                <div class="timestamp cell">{{errorSet.error.timestamp}}</div>
+                <div class="code cell">{{errorSet.error.trouble_code}}</div>
+                <div class="message cell">{{errorSet.error.message}}</div>
+            </div>
+        </div>
+        <div class="no_alerts" ng-if="errors.length < 1">
+            No alerts.
+        </div>
+    </div>
+</div>
