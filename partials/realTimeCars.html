@@ -1,0 +1,80 @@
+<div class="rtc">
+    <div class="wrap">
+        <h1>Real Time Cars</h1>
+
+        <div class="dashboard_container">
+            <div class="car_dashboard_row" ng-repeat="tCar in testCars">
+                <div class="title_wrap">
+                    <h3 class="title">
+                        {{tCar.year}} {{tCar.make}} {{tCar.model}}
+                    </h3>
+                    <div>{{tCar.description}}</div>
+                </div>
+
+                <div class="mil_button">
+                    <button ng-click="tCar.toggleMIL()" ng-if="tCar.getMIL()">MIL Off</button>
+                    <button ng-click="tCar.toggleMIL()" ng-if="!tCar.getMIL()">MIL On</button>
+                </div>
+
+                <div class="on_off">
+                    <button ng-click="toggleRunning($index)" ng-if="tCar.getRunning()">Off</button>
+                    <button ng-click="toggleRunning($index)" ng-if="!tCar.getRunning()">On</button>
+                </div>
+
+                <div class="plus_minus">
+                    <div class="plus" ng-click="tCar.setSpeed(tCar.getSpeed() + 1)">
+                        <svg height="135.467mm" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 13547 13547" width="135.467mm" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">
+                       <![CDATA[
+                        .fil0 {fill:none}
+                       .fil1 {fill:black}
+                       ]]>
+                      </style></defs><g id="Ebene_x0020_1"><polygon class="fil0" points="0,0 13547,0 13547,13547 0,13547 "/><path class="fil1" d="M714 12832l12118 0 0 -12117 -12118 0 0 12117zm2566 -5212l2646 0 0 2646 1693 0 0 -2646 2646 0 0 -1693 -2646 0 0 -2646 -1693 0 0 2646 -2646 0 0 1693z"/></g></svg>
+                    </div>
+                    <div class="minus" ng-click="tCar.setSpeed(tCar.getSpeed() - 1)">
+                        <svg height="135.467mm" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 13547 13547" width="135.467mm" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">
+                       <![CDATA[
+                        .fil0 {fill:none}
+                       .fil1 {fill:black}
+                       ]]>
+                      </style></defs><g id="Ebene_x0020_1"><polygon class="fil0" points="0,0 13547,0 13547,13547 0,13547 "/><path class="fil1" d="M714 12832l12118 0 0 -12117 -12118 0 0 12117zm2566 -5212l6985 0 0 -1693 -6985 0 0 1693z"/></g></svg>
+                    </div>
+                </div>
+
+                <div class="property_container">
+                    <div class="vin property">
+                        <label class="uppercase">Vin:</label>
+                        {{tCar.vin}}
+                    </div>
+                    <div class="vs property">
+                        <label class="uppercase">Vehicle Speed:</label>
+                        {{tCar.getSpeed()}}
+                    </div>
+                    <div class="erpm property">
+                        <label class="uppercase">Engine RPM:</label>
+                        {{tCar.getEngineRPM()}}
+                    </div>
+                    <div class="rtss property">
+                        <label class="uppercase">Run Time Since Start:</label>
+                        {{ tCar.timeSinceStart }} Hours
+                    </div>
+                    <div class="fuel property">
+                        <label class="uppercase">Fuel Level:</label>
+                        {{tCar.getFuelLevel() }}%
+                    </div>
+                    <div class="oil property">
+                        <label class="uppercase">Oil Temp:</label>
+                        {{tCar.getOilTempFahrenheit()}}F
+                    </div>
+                    <div class="accel property">
+                        <label class="uppercase">Accelerator Position:</label>
+                        {{tCar.getAccelPos()}}%
+                    </div>
+                    <div class="mil property">
+                        <label class="uppercase">Distance with MIL Indicator:</label>
+                        {{tCar.getDistanceWithMIL()}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
