@@ -24,6 +24,9 @@ harrisApp.factory('RestFactory', ['$http', 'alert', 'alertNew', 'alertId', 'data
 
                 return $http.get(urlString);
             },
+            getVehicleDataByVin: function(vin) {
+                return $http.get(vehicleData + vin);
+            },
             postVehicleData: function(dataObj) {
                 return $http.post(data, dataObj);
             },

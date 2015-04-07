@@ -1,5 +1,5 @@
-harrisControllers.controller('RealTimeResultsCtrl', ['$rootScope', '$scope', '$http', 'RealTimeResultsService', 'RestFactory',
-    function($rootScope, $scope, $http, RealTimeResultsService, RestFactory) {
+harrisControllers.controller('RealTimeResultsCtrl', ['$rootScope', '$scope', '$interval', '$http', 'RealTimeResultsService', 'RestFactory',
+    function($rootScope, $scope, $interval, $http, RealTimeResultsService, RestFactory) {
 
         // Root Scope Properties
         $rootScope.pageTitle = "Real Time Monitoring";
@@ -8,6 +8,10 @@ harrisControllers.controller('RealTimeResultsCtrl', ['$rootScope', '$scope', '$h
         // Scope Properties
         $scope.errors = [];
         $scope.selected_car = null;
+        $scope.selectedCarInterval = null;
+        $scope.selectedCarTimeInterval = 1000;
+        $scope.alertInterval = null;
+        $scope.alertintervalTime = 1000;
 
         // Scope Methods
         $scope.getVehicles = function() {
@@ -38,6 +42,7 @@ harrisControllers.controller('RealTimeResultsCtrl', ['$rootScope', '$scope', '$h
                     });
                 }).then(function() {
                     $scope.cars = RealTimeResultsService.rowifyData(cars);
+                    $scope.alertInterval = $interval(keepFetchingAlerts, $scope.alertintervalTime);
                 });
             });
         };
@@ -76,21 +81,11 @@ harrisControllers.controller('RealTimeResultsCtrl', ['$rootScope', '$scope', '$h
 
         $scope.clicked_car = function(car) {
 
-            var cvin = '["' + car.pk_vin + '"]';
-            var dels = '["vehicle_speed", "engine_rpm", "run_time_since_start", "fuel_level", "oil_temp", "accel_pos", "dist_with_MIL"]';
-            var today = new Date();
-            var start = "2015-03-02 00:00:00";
-            var end = today.getFullYear() + "-" + (today.getMonth()+1) + "-" + today.getDate() + " 23:59:59";
-            var dataObj = {};
-
-            dataObj.vinString = cvin;
-            dataObj.propString = dels;
-            dataObj.startDate = start;
-            dataObj.endDate = end;
+            $interval.cancel($scope.selectedCarInterval);
 
             car.clicked = ($scope.selected_car == car)  ? null : true;
 
-            var vehicleData = RestFactory.getVehicleData(dataObj);
+            var vehicleData = RestFactory.getVehicleDataByVin(car.pk_vin);
             vehicleData.success(function(vData) {
                 if(vData) {
                     var clicked = car.clicked;
@@ -104,10 +99,56 @@ harrisControllers.controller('RealTimeResultsCtrl', ['$rootScope', '$scope', '$h
                     $scope.selected_car = 'no_data';
                 }
             });
+
+            $scope.selectedCarInterval = $interval(keepFetchingCarData, $scope.selectedCarTimeInterval);
         };
 
         // Run Scope Setup Methods
         $scope.getVehicles();
         $scope.getAlerts();
+
+        function keepFetchingAlerts() {
+
+            var alerts = RestFactory.getNewAlerts();
+            var vehicles = RestFactory.getVehicles();
+
+            alerts.success(function(alerts){
+                alerts.forEach(function(alert){
+                    var foundAlert = false;
+
+                    $scope.errors.forEach(function(car){
+
+                        if(alert.vin == car.error.vin && alert.timestamp == car.error.timestamp) {
+                            foundAlert = true;
+                        }
+                    });
+
+                    if(!foundAlert) {
+                        vehicles.success(function(v){
+                            v.forEach(function(vehicle){
+                                if(vehicle.pk_vin == alert.vin){
+                                    var newCarAlert = {};
+                                    newCarAlert.error = alert;
+                                    newCarAlert.carInfo = vehicle;
+
+                                    $scope.errors.push(newCarAlert);
+                                }
+                            });
+                        });
+                    }
+
+                });
+            });
+        }
+
+        function keepFetchingCarData() {
+            var carVin = $scope.selected_car.carInfo.pk_vin;
+
+            var vehicleData = RestFactory.getVehicleDataByVin(carVin);
+
+            vehicleData.success(function(mostRecentCarData){
+                $scope.selected_car.data = mostRecentCarData[0];
+            })
+        }
     }
 ]);

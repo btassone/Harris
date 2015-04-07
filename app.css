@@ -188,6 +188,18 @@ main .settings .cars .car { margin-bottom: 10px; }
 main .settings .cars .car .cell { vertical-align: top; }
 main .settings .cars .car .cell:last-child { padding-left: 10px; }
 
+main .rtc { background-color: #fff; }
+main .rtc .dashboard_car_container { max-height: 600px; overflow: auto; }
+main .rtc .title { margin-bottom: 0; }
+main .rtc .description { margin-bottom: 20px; }
+main .rtc .table { display: table; }
+main .rtc .cell { display: table-cell; vertical-align: middle; }
+main .rtc .dashboard_car { margin-bottom: 40px; background: #ccc; color: #222; padding: 20px; margin-left: 1%; margin-right: 1%; width: 49%; }
+main .rtc .dashboard_car:nth-child(2n + 1) { margin-left: 0; margin-right: 1%; }
+main .rtc .dashboard_car:nth-child(2n + 2) { margin-left: 1%; margin-right: 0; }
+main .rtc .options { }
+main .rtc .options h5 { font-size: 1em; margin-bottom: 0; }
+
 footer { position: relative; background-color: #E41936; }
 footer .wrap { text-align: center; padding: 2.5em 0; color: #fff; font-size: 1em; }
 

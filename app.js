@@ -35,6 +35,10 @@ harrisApp.config(['$routeProvider',
             when('/dataGen', {
                 templateUrl: 'partials/dataGen.html',
                 controller: 'AdminCtrl'
+            }).
+            when('/realTimeCars', {
+                templateUrl: 'partials/realTimeCars.html',
+                controller: 'RealTimeCarCtrl'
             })
     }
 ]);
@@ -43,6 +47,8 @@ harrisApp.run(['$rootScope', function($rootScope){
     $rootScope.copyrightYear = function() {
         return (new Date()).getFullYear();
     };
+    $rootScope.runningCars = [];
+    $rootScope.runningCarInternval = null;
 }]);
 
 $("header .navigation .container .item").on('click', function() {
